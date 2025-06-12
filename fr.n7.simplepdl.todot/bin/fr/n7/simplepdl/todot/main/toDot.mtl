@@ -1,0 +1,24 @@
+[comment encoding = UTF-8 /]
+[module toDot('http://simplepdl')]
+
+[template public processToDot(aProcess : Process)]
+[comment @main/]
+[file (aProcess.name + '.dot', false, 'UTF-8')]
+digraph "[aProcess.name/]" {
+    [for (wd : WorkDefinition | aProcess.getWDs())]
+        [for (ws : WorkSequence | wd.linksToPredecessors)]
+            "[wd.name/]" -> "[ws.predecessor.name/]" [label="[ws.linkType.toString()/]"];
+        [/for]
+        [for (ws : WorkSequence | wd.linksToSuccessors)]
+            "[wd.name/]" -> "[ws.successor.name/]" [label="[ws.linkType.toString()/]"];
+        [/for]
+    [/for]
+}
+[/file]
+[/template]
+
+[query public getWDs(p: Process) : OrderedSet(WorkDefinition) =
+    p.processElements->select(e | e.oclIsTypeOf(WorkDefinition))
+    ->collect(e | e.oclAsType(WorkDefinition))
+    ->asOrderedSet()
+/]

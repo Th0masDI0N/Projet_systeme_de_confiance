@@ -1,0 +1,7 @@
+digraph "Mon premier processus" {
+    "Ma première WorkDefinition quelle émotion" -> "Ma deuxième WorkDefinition toujours autant d'émotion";
+    "Ma première WorkDefinition quelle émotion" -> "Ma deuxième WorkDefinition toujours autant d'émotion";
+    "Ma deuxième WorkDefinition toujours autant d'émotion" -> "Ma première WorkDefinition quelle émotion";
+    "Ma deuxième WorkDefinition toujours autant d'émotion" -> "Ma première WorkDefinition quelle émotion";
+}
+
