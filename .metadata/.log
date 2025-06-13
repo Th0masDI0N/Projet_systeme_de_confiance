@@ -1978,3 +1978,112 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.core.expressions.IEva
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:607)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1492)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1465)
+!SESSION 2025-06-13 09:01:46.564 -----------------------------------------------
+eclipse.buildId=4.35.0.20250306-0811
+java.version=21.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=fr_FR
+Framework arguments:  -product org.eclipse.epp.package.modeling.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.modeling.product
+
+!ENTRY org.eclipse.sirius.common.acceleo.aql 2 0 2025-06-13 09:50:44.075
+!MESSAGE Could not find Java extension class org.eclipse.emf.ecoretools.design.service.GenerationServices
+
+!ENTRY org.eclipse.sirius.common 2 0 2025-06-13 09:50:45.351
+!MESSAGE Could not find Java extension class org.eclipse.emf.ecoretools.design.service.GenerationServices
+!STACK 0
+java.lang.RuntimeException
+	at org.eclipse.sirius.common.tools.internal.interpreter.ServiceInterpreter$1.notFound(ServiceInterpreter.java:82)
+	at org.eclipse.sirius.common.tools.api.interpreter.JavaExtensionsManager.notFound(JavaExtensionsManager.java:549)
+	at org.eclipse.sirius.common.tools.api.interpreter.JavaExtensionsManager.loadJavaExtensions(JavaExtensionsManager.java:542)
+	at org.eclipse.sirius.common.tools.api.interpreter.JavaExtensionsManager.reloadIfNeeded(JavaExtensionsManager.java:247)
+	at org.eclipse.sirius.common.tools.internal.interpreter.ServiceInterpreter.evaluate(ServiceInterpreter.java:126)
+	at org.eclipse.sirius.tools.internal.interpreter.SessionInterpreter.evaluate(SessionInterpreter.java:179)
+	at org.eclipse.sirius.common.tools.api.interpreter.IInterpreter.evaluateEObject(IInterpreter.java:180)
+	at org.eclipse.sirius.business.internal.logger.RuntimeLoggerInterpreterImpl.evaluateEObject(RuntimeLoggerInterpreterImpl.java:116)
+	at org.eclipse.sirius.business.internal.helper.task.operations.ChangeContextTask.execute(ChangeContextTask.java:58)
+	at org.eclipse.sirius.business.internal.helper.task.ExecuteToolOperationTask.executeTask(ExecuteToolOperationTask.java:119)
+	at org.eclipse.sirius.business.internal.helper.task.ExecuteToolOperationTask.execute(ExecuteToolOperationTask.java:108)
+	at org.eclipse.sirius.diagram.business.internal.sync.DDiagramSynchronizer.applyInitializationOperation(DDiagramSynchronizer.java:260)
+	at org.eclipse.sirius.diagram.business.internal.sync.DDiagramSynchronizer.initDiagram(DDiagramSynchronizer.java:234)
+	at org.eclipse.sirius.diagram.business.internal.dialect.DiagramDialectServices.createRepresentation(DiagramDialectServices.java:162)
+	at org.eclipse.sirius.diagram.business.internal.dialect.DiagramDialectServices.createRepresentation(DiagramDialectServices.java:174)
+	at org.eclipse.sirius.business.internal.dialect.DialectManagerImpl.createRepresentation(DialectManagerImpl.java:144)
+	at org.eclipse.sirius.business.api.dialect.command.CreateRepresentationCommand.doExecute(CreateRepresentationCommand.java:117)
+	at org.eclipse.emf.transaction.RecordingCommand.execute(RecordingCommand.java:130)
+	at org.eclipse.emf.workspace.EMFCommandOperation.doExecute(EMFCommandOperation.java:114)
+	at org.eclipse.emf.workspace.AbstractEMFOperation.execute(AbstractEMFOperation.java:145)
+	at org.eclipse.core.commands.operations.DefaultOperationHistory.execute(DefaultOperationHistory.java:488)
+	at org.eclipse.emf.workspace.impl.WorkspaceCommandStackImpl.doExecute(WorkspaceCommandStackImpl.java:203)
+	at org.eclipse.emf.transaction.impl.AbstractTransactionalCommandStack.execute(AbstractTransactionalCommandStack.java:160)
+	at org.eclipse.emf.transaction.impl.AbstractTransactionalCommandStack.execute(AbstractTransactionalCommandStack.java:214)
+	at org.eclipse.emf.ecoretools.design.ui.wizard.InitializeEcoreDiagramWizard$2.run(InitializeEcoreDiagramWizard.java:377)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:124)
+
+!ENTRY org.eclipse.sirius.common.acceleo.aql 2 0 2025-06-13 09:57:28.194
+!MESSAGE Could not find Java extension class org.eclipse.emf.ecoretools.design.service.GenerationServices
+
+!ENTRY org.eclipse.sirius.common 2 0 2025-06-13 09:57:29.460
+!MESSAGE Could not find Java extension class org.eclipse.emf.ecoretools.design.service.GenerationServices
+!STACK 0
+java.lang.RuntimeException
+	at org.eclipse.sirius.common.tools.internal.interpreter.ServiceInterpreter$1.notFound(ServiceInterpreter.java:82)
+	at org.eclipse.sirius.common.tools.api.interpreter.JavaExtensionsManager.notFound(JavaExtensionsManager.java:549)
+	at org.eclipse.sirius.common.tools.api.interpreter.JavaExtensionsManager.loadJavaExtensions(JavaExtensionsManager.java:542)
+	at org.eclipse.sirius.common.tools.api.interpreter.JavaExtensionsManager.reloadIfNeeded(JavaExtensionsManager.java:247)
+	at org.eclipse.sirius.common.tools.internal.interpreter.ServiceInterpreter.evaluate(ServiceInterpreter.java:126)
+	at org.eclipse.sirius.tools.internal.interpreter.SessionInterpreter.evaluate(SessionInterpreter.java:179)
+	at org.eclipse.sirius.common.tools.api.interpreter.IInterpreter.evaluateEObject(IInterpreter.java:180)
+	at org.eclipse.sirius.business.internal.logger.RuntimeLoggerInterpreterImpl.evaluateEObject(RuntimeLoggerInterpreterImpl.java:116)
+	at org.eclipse.sirius.business.internal.helper.task.operations.ChangeContextTask.execute(ChangeContextTask.java:58)
+	at org.eclipse.sirius.business.internal.helper.task.ExecuteToolOperationTask.executeTask(ExecuteToolOperationTask.java:119)
+	at org.eclipse.sirius.business.internal.helper.task.ExecuteToolOperationTask.execute(ExecuteToolOperationTask.java:108)
+	at org.eclipse.sirius.diagram.business.internal.sync.DDiagramSynchronizer.applyInitializationOperation(DDiagramSynchronizer.java:260)
+	at org.eclipse.sirius.diagram.business.internal.sync.DDiagramSynchronizer.initDiagram(DDiagramSynchronizer.java:234)
+	at org.eclipse.sirius.diagram.business.internal.dialect.DiagramDialectServices.createRepresentation(DiagramDialectServices.java:162)
+	at org.eclipse.sirius.diagram.business.internal.dialect.DiagramDialectServices.createRepresentation(DiagramDialectServices.java:174)
+	at org.eclipse.sirius.business.internal.dialect.DialectManagerImpl.createRepresentation(DialectManagerImpl.java:144)
+	at org.eclipse.sirius.business.api.dialect.command.CreateRepresentationCommand.doExecute(CreateRepresentationCommand.java:117)
+	at org.eclipse.emf.transaction.RecordingCommand.execute(RecordingCommand.java:130)
+	at org.eclipse.emf.workspace.EMFCommandOperation.doExecute(EMFCommandOperation.java:114)
+	at org.eclipse.emf.workspace.AbstractEMFOperation.execute(AbstractEMFOperation.java:145)
+	at org.eclipse.core.commands.operations.DefaultOperationHistory.execute(DefaultOperationHistory.java:488)
+	at org.eclipse.emf.workspace.impl.WorkspaceCommandStackImpl.doExecute(WorkspaceCommandStackImpl.java:203)
+	at org.eclipse.emf.transaction.impl.AbstractTransactionalCommandStack.execute(AbstractTransactionalCommandStack.java:160)
+	at org.eclipse.emf.transaction.impl.AbstractTransactionalCommandStack.execute(AbstractTransactionalCommandStack.java:214)
+	at org.eclipse.emf.ecoretools.design.ui.wizard.InitializeEcoreDiagramWizard$2.run(InitializeEcoreDiagramWizard.java:377)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:124)
+
+!ENTRY org.eclipse.sirius.common.acceleo.aql 2 0 2025-06-13 10:01:14.995
+!MESSAGE Could not find Java extension class org.eclipse.emf.ecoretools.design.service.GenerationServices
+
+!ENTRY org.eclipse.sirius.common 2 0 2025-06-13 10:01:16.499
+!MESSAGE Could not find Java extension class org.eclipse.emf.ecoretools.design.service.GenerationServices
+!STACK 0
+java.lang.RuntimeException
+	at org.eclipse.sirius.common.tools.internal.interpreter.ServiceInterpreter$1.notFound(ServiceInterpreter.java:82)
+	at org.eclipse.sirius.common.tools.api.interpreter.JavaExtensionsManager.notFound(JavaExtensionsManager.java:549)
+	at org.eclipse.sirius.common.tools.api.interpreter.JavaExtensionsManager.loadJavaExtensions(JavaExtensionsManager.java:542)
+	at org.eclipse.sirius.common.tools.api.interpreter.JavaExtensionsManager.reloadIfNeeded(JavaExtensionsManager.java:247)
+	at org.eclipse.sirius.common.tools.internal.interpreter.ServiceInterpreter.evaluate(ServiceInterpreter.java:126)
+	at org.eclipse.sirius.tools.internal.interpreter.SessionInterpreter.evaluate(SessionInterpreter.java:179)
+	at org.eclipse.sirius.common.tools.api.interpreter.IInterpreter.evaluateEObject(IInterpreter.java:180)
+	at org.eclipse.sirius.business.internal.logger.RuntimeLoggerInterpreterImpl.evaluateEObject(RuntimeLoggerInterpreterImpl.java:116)
+	at org.eclipse.sirius.business.internal.helper.task.operations.ChangeContextTask.execute(ChangeContextTask.java:58)
+	at org.eclipse.sirius.business.internal.helper.task.ExecuteToolOperationTask.executeTask(ExecuteToolOperationTask.java:119)
+	at org.eclipse.sirius.business.internal.helper.task.ExecuteToolOperationTask.execute(ExecuteToolOperationTask.java:108)
+	at org.eclipse.sirius.diagram.business.internal.sync.DDiagramSynchronizer.applyInitializationOperation(DDiagramSynchronizer.java:260)
+	at org.eclipse.sirius.diagram.business.internal.sync.DDiagramSynchronizer.initDiagram(DDiagramSynchronizer.java:234)
+	at org.eclipse.sirius.diagram.business.internal.dialect.DiagramDialectServices.createRepresentation(DiagramDialectServices.java:162)
+	at org.eclipse.sirius.diagram.business.internal.dialect.DiagramDialectServices.createRepresentation(DiagramDialectServices.java:174)
+	at org.eclipse.sirius.business.internal.dialect.DialectManagerImpl.createRepresentation(DialectManagerImpl.java:144)
+	at org.eclipse.sirius.business.api.dialect.command.CreateRepresentationCommand.doExecute(CreateRepresentationCommand.java:117)
+	at org.eclipse.emf.transaction.RecordingCommand.execute(RecordingCommand.java:130)
+	at org.eclipse.emf.workspace.EMFCommandOperation.doExecute(EMFCommandOperation.java:114)
+	at org.eclipse.emf.workspace.AbstractEMFOperation.execute(AbstractEMFOperation.java:145)
+	at org.eclipse.core.commands.operations.DefaultOperationHistory.execute(DefaultOperationHistory.java:488)
+	at org.eclipse.emf.workspace.impl.WorkspaceCommandStackImpl.doExecute(WorkspaceCommandStackImpl.java:203)
+	at org.eclipse.emf.transaction.impl.AbstractTransactionalCommandStack.execute(AbstractTransactionalCommandStack.java:160)
+	at org.eclipse.emf.transaction.impl.AbstractTransactionalCommandStack.execute(AbstractTransactionalCommandStack.java:214)
+	at org.eclipse.emf.ecoretools.design.ui.wizard.InitializeEcoreDiagramWizard$2.run(InitializeEcoreDiagramWizard.java:377)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:124)

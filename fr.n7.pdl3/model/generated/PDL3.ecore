@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="pDL3" nsURI="http://www.n7.fr/PDL3" nsPrefix="pDL3">
+  <eClassifiers xsi:type="ecore:EClass" name="Process">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="workDefinitions" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="workSequences" upperBound="-1"
+        eType="#//WorkSequence" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WorkSequence">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predecessor" eType="#//WorkDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="linkType" eType="#//WorkSequenceType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="successor" eType="#//WorkDefinition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="WorkSequenceType">
+    <eLiterals name="s2s" literal="s2s"/>
+    <eLiterals name="f2s" value="1" literal="f2s"/>
+    <eLiterals name="s2f" value="2" literal="s2f"/>
+    <eLiterals name="f2f" value="3" literal="f2f"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WorkDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

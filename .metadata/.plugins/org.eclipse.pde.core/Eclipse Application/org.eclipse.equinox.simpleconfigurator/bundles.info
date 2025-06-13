@@ -25,6 +25,11 @@ com.sun.el.javax.el,3.0.4,file:/home/n7student/.p2/pool/plugins/com.sun.el.javax
 com.sun.jna,5.16.0.v20241222-1200,file:/home/n7student/.p2/pool/plugins/com.sun.jna_5.16.0.v20241222-1200/,4,false
 com.sun.jna.platform,5.16.0,file:/home/n7student/.p2/pool/plugins/com.sun.jna.platform_5.16.0.jar,4,false
 com.sun.xml.bind,2.3.3.v20221203-1659,file:/home/n7student/.p2/pool/plugins/com.sun.xml.bind_2.3.3.v20221203-1659.jar,4,false
+fr.n7.pdl1,1.0.0.qualifier,file:/home/n7student/2A/SystemeDeConfiance/fr.n7.pdl1/,4,false
+fr.n7.pdl1.ide,1.0.0.qualifier,file:/home/n7student/2A/SystemeDeConfiance/fr.n7.pdl1.ide/,4,false
+fr.n7.pdl1.tests,1.0.0.qualifier,file:/home/n7student/2A/SystemeDeConfiance/fr.n7.pdl1.tests/,4,false
+fr.n7.pdl1.ui,1.0.0.qualifier,file:/home/n7student/2A/SystemeDeConfiance/fr.n7.pdl1.ui/,4,false
+fr.n7.pdl1.ui.tests,1.0.0.qualifier,file:/home/n7student/2A/SystemeDeConfiance/fr.n7.pdl1.ui.tests/,4,false
 fr.n7.petrinet,1.0.0.qualifier,file:/home/n7student/2A/SystemeDeConfiance/fr.n7.petrinet/,4,false
 fr.n7.petrinet.edit,1.0.0.qualifier,file:/home/n7student/2A/SystemeDeConfiance/fr.n7.petrinet.edit/,4,false
 fr.n7.petrinet.editor,1.0.0.qualifier,file:/home/n7student/2A/SystemeDeConfiance/fr.n7.petrinet.editor/,4,false

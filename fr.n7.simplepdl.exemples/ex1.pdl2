@@ -1,0 +1,9 @@
+process ex1 {
+  wd a {}
+  wd b {
+    starts if a started
+  }
+  wd c {
+    starts if b finished
+  }
+}
