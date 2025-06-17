@@ -16,31 +16,32 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimplePDL.ecore#//Process/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimplePDL.ecore#//Process/processElements"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="SimplePDL.ecore#//ProcessElement">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SimplePDL.ecore#//ProcessElement/process"/>
+    </genClasses>
     <genClasses ecoreClass="SimplePDL.ecore#//WorkDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimplePDL.ecore#//WorkDefinition/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimplePDL.ecore#//WorkDefinition/linksToPredecessors"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimplePDL.ecore#//WorkDefinition/linksToSuccessors"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimplePDL.ecore#//WorkDefinition/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimplePDL.ecore#//WorkDefinition/need"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimplePDL.ecore#//WorkDefinition/resourceUsages"/>
     </genClasses>
     <genClasses ecoreClass="SimplePDL.ecore#//WorkSequence">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimplePDL.ecore#//WorkSequence/linkType"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimplePDL.ecore#//WorkSequence/predecessor"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimplePDL.ecore#//WorkSequence/successor"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="SimplePDL.ecore#//ProcessElement"/>
+    <genClasses ecoreClass="SimplePDL.ecore#//Ressource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimplePDL.ecore#//Ressource/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimplePDL.ecore#//Ressource/quantity"/>
+    </genClasses>
+    <genClasses ecoreClass="SimplePDL.ecore#//RessourceAllocation">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SimplePDL.ecore#//RessourceAllocation/task"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimplePDL.ecore#//RessourceAllocation/ressource"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimplePDL.ecore#//RessourceAllocation/quantity"/>
+    </genClasses>
     <genClasses ecoreClass="SimplePDL.ecore#//Guidance">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimplePDL.ecore#//Guidance/text"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimplePDL.ecore#//Guidance/elements"/>
-    </genClasses>
-    <genClasses ecoreClass="SimplePDL.ecore#//Resource">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimplePDL.ecore#//Resource/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimplePDL.ecore#//Resource/nbAvailableResources"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimplePDL.ecore#//Resource/needs"/>
-    </genClasses>
-    <genClasses ecoreClass="SimplePDL.ecore#//Need">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimplePDL.ecore#//Need/nbResources"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimplePDL.ecore#//Need/resource"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SimplePDL.ecore#//Need/workdefinition"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

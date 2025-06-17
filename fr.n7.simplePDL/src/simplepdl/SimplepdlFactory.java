@@ -49,6 +49,24 @@ public interface SimplepdlFactory extends EFactory {
 	WorkSequence createWorkSequence();
 
 	/**
+	 * Returns a new object of class '<em>Ressource</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ressource</em>'.
+	 * @generated
+	 */
+	Ressource createRessource();
+
+	/**
+	 * Returns a new object of class '<em>Ressource Allocation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ressource Allocation</em>'.
+	 * @generated
+	 */
+	RessourceAllocation createRessourceAllocation();
+
+	/**
 	 * Returns a new object of class '<em>Guidance</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,24 +74,6 @@ public interface SimplepdlFactory extends EFactory {
 	 * @generated
 	 */
 	Guidance createGuidance();
-
-	/**
-	 * Returns a new object of class '<em>Resource</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Resource</em>'.
-	 * @generated
-	 */
-	Resource createResource();
-
-	/**
-	 * Returns a new object of class '<em>Need</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Need</em>'.
-	 * @generated
-	 */
-	Need createNeed();
 
 	/**
 	 * Returns the package supported by this factory.

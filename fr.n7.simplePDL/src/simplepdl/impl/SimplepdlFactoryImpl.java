@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import simplepdl.Guidance;
-import simplepdl.Need;
-import simplepdl.Resource;
+import simplepdl.Ressource;
+import simplepdl.RessourceAllocation;
 import simplepdl.SimplepdlFactory;
 import simplepdl.SimplepdlPackage;
 import simplepdl.WorkDefinition;
@@ -67,9 +67,9 @@ public class SimplepdlFactoryImpl extends EFactoryImpl implements SimplepdlFacto
 			case SimplepdlPackage.PROCESS: return createProcess();
 			case SimplepdlPackage.WORK_DEFINITION: return createWorkDefinition();
 			case SimplepdlPackage.WORK_SEQUENCE: return createWorkSequence();
+			case SimplepdlPackage.RESSOURCE: return createRessource();
+			case SimplepdlPackage.RESSOURCE_ALLOCATION: return createRessourceAllocation();
 			case SimplepdlPackage.GUIDANCE: return createGuidance();
-			case SimplepdlPackage.RESOURCE: return createResource();
-			case SimplepdlPackage.NEED: return createNeed();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -144,31 +144,31 @@ public class SimplepdlFactoryImpl extends EFactoryImpl implements SimplepdlFacto
 	 * @generated
 	 */
 	@Override
+	public Ressource createRessource() {
+		RessourceImpl ressource = new RessourceImpl();
+		return ressource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RessourceAllocation createRessourceAllocation() {
+		RessourceAllocationImpl ressourceAllocation = new RessourceAllocationImpl();
+		return ressourceAllocation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Guidance createGuidance() {
 		GuidanceImpl guidance = new GuidanceImpl();
 		return guidance;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Resource createResource() {
-		ResourceImpl resource = new ResourceImpl();
-		return resource;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Need createNeed() {
-		NeedImpl need = new NeedImpl();
-		return need;
 	}
 
 	/**

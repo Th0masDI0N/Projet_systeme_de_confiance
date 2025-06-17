@@ -13,10 +13,10 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link simplepdl.WorkDefinition#getName <em>Name</em>}</li>
  *   <li>{@link simplepdl.WorkDefinition#getLinksToPredecessors <em>Links To Predecessors</em>}</li>
  *   <li>{@link simplepdl.WorkDefinition#getLinksToSuccessors <em>Links To Successors</em>}</li>
- *   <li>{@link simplepdl.WorkDefinition#getName <em>Name</em>}</li>
- *   <li>{@link simplepdl.WorkDefinition#getNeed <em>Need</em>}</li>
+ *   <li>{@link simplepdl.WorkDefinition#getResourceUsages <em>Resource Usages</em>}</li>
  * </ul>
  *
  * @see simplepdl.SimplepdlPackage#getWorkDefinition()
@@ -24,6 +24,28 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface WorkDefinition extends ProcessElement {
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see simplepdl.SimplepdlPackage#getWorkDefinition_Name()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link simplepdl.WorkDefinition#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
+
 	/**
 	 * Returns the value of the '<em><b>Links To Predecessors</b></em>' reference list.
 	 * The list contents are of type {@link simplepdl.WorkSequence}.
@@ -53,41 +75,17 @@ public interface WorkDefinition extends ProcessElement {
 	EList<WorkSequence> getLinksToSuccessors();
 
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Resource Usages</b></em>' containment reference list.
+	 * The list contents are of type {@link simplepdl.RessourceAllocation}.
+	 * It is bidirectional and its opposite is '{@link simplepdl.RessourceAllocation#getTask <em>Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see simplepdl.SimplepdlPackage#getWorkDefinition_Name()
-	 * @model required="true"
+	 * @return the value of the '<em>Resource Usages</em>' containment reference list.
+	 * @see simplepdl.SimplepdlPackage#getWorkDefinition_ResourceUsages()
+	 * @see simplepdl.RessourceAllocation#getTask
+	 * @model opposite="task" containment="true"
 	 * @generated
 	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link simplepdl.WorkDefinition#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Need</b></em>' containment reference list.
-	 * The list contents are of type {@link simplepdl.Need}.
-	 * It is bidirectional and its opposite is '{@link simplepdl.Need#getWorkdefinition <em>Workdefinition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Need</em>' containment reference list.
-	 * @see simplepdl.SimplepdlPackage#getWorkDefinition_Need()
-	 * @see simplepdl.Need#getWorkdefinition
-	 * @model opposite="workdefinition" containment="true"
-	 * @generated
-	 */
-	EList<Need> getNeed();
-
-	Process getProcess();
+	EList<RessourceAllocation> getResourceUsages();
 
 } // WorkDefinition

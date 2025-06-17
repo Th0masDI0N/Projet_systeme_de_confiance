@@ -18,8 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import simplepdl.Need;
-import simplepdl.Process;
+import simplepdl.RessourceAllocation;
 import simplepdl.SimplepdlPackage;
 import simplepdl.WorkDefinition;
 import simplepdl.WorkSequence;
@@ -32,35 +31,15 @@ import simplepdl.WorkSequence;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link simplepdl.impl.WorkDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link simplepdl.impl.WorkDefinitionImpl#getLinksToPredecessors <em>Links To Predecessors</em>}</li>
  *   <li>{@link simplepdl.impl.WorkDefinitionImpl#getLinksToSuccessors <em>Links To Successors</em>}</li>
- *   <li>{@link simplepdl.impl.WorkDefinitionImpl#getName <em>Name</em>}</li>
- *   <li>{@link simplepdl.impl.WorkDefinitionImpl#getNeed <em>Need</em>}</li>
+ *   <li>{@link simplepdl.impl.WorkDefinitionImpl#getResourceUsages <em>Resource Usages</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefinition {
-	/**
-	 * The cached value of the '{@link #getLinksToPredecessors() <em>Links To Predecessors</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLinksToPredecessors()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<WorkSequence> linksToPredecessors;
-
-	/**
-	 * The cached value of the '{@link #getLinksToSuccessors() <em>Links To Successors</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLinksToSuccessors()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<WorkSequence> linksToSuccessors;
-
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -82,14 +61,34 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getNeed() <em>Need</em>}' containment reference list.
+	 * The cached value of the '{@link #getLinksToPredecessors() <em>Links To Predecessors</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNeed()
+	 * @see #getLinksToPredecessors()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Need> need;
+	protected EList<WorkSequence> linksToPredecessors;
+
+	/**
+	 * The cached value of the '{@link #getLinksToSuccessors() <em>Links To Successors</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLinksToSuccessors()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<WorkSequence> linksToSuccessors;
+
+	/**
+	 * The cached value of the '{@link #getResourceUsages() <em>Resource Usages</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResourceUsages()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<RessourceAllocation> resourceUsages;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -108,6 +107,29 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
 	@Override
 	protected EClass eStaticClass() {
 		return SimplepdlPackage.Literals.WORK_DEFINITION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SimplepdlPackage.WORK_DEFINITION__NAME, oldName, name));
 	}
 
 	/**
@@ -142,34 +164,11 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
 	 * @generated
 	 */
 	@Override
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SimplepdlPackage.WORK_DEFINITION__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Need> getNeed() {
-		if (need == null) {
-			need = new EObjectContainmentWithInverseEList<Need>(Need.class, this, SimplepdlPackage.WORK_DEFINITION__NEED, SimplepdlPackage.NEED__WORKDEFINITION);
+	public EList<RessourceAllocation> getResourceUsages() {
+		if (resourceUsages == null) {
+			resourceUsages = new EObjectContainmentWithInverseEList<RessourceAllocation>(RessourceAllocation.class, this, SimplepdlPackage.WORK_DEFINITION__RESOURCE_USAGES, SimplepdlPackage.RESSOURCE_ALLOCATION__TASK);
 		}
-		return need;
+		return resourceUsages;
 	}
 
 	/**
@@ -185,8 +184,8 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getLinksToPredecessors()).basicAdd(otherEnd, msgs);
 			case SimplepdlPackage.WORK_DEFINITION__LINKS_TO_SUCCESSORS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getLinksToSuccessors()).basicAdd(otherEnd, msgs);
-			case SimplepdlPackage.WORK_DEFINITION__NEED:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNeed()).basicAdd(otherEnd, msgs);
+			case SimplepdlPackage.WORK_DEFINITION__RESOURCE_USAGES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getResourceUsages()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -203,8 +202,8 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
 				return ((InternalEList<?>)getLinksToPredecessors()).basicRemove(otherEnd, msgs);
 			case SimplepdlPackage.WORK_DEFINITION__LINKS_TO_SUCCESSORS:
 				return ((InternalEList<?>)getLinksToSuccessors()).basicRemove(otherEnd, msgs);
-			case SimplepdlPackage.WORK_DEFINITION__NEED:
-				return ((InternalEList<?>)getNeed()).basicRemove(otherEnd, msgs);
+			case SimplepdlPackage.WORK_DEFINITION__RESOURCE_USAGES:
+				return ((InternalEList<?>)getResourceUsages()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -217,14 +216,14 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SimplepdlPackage.WORK_DEFINITION__NAME:
+				return getName();
 			case SimplepdlPackage.WORK_DEFINITION__LINKS_TO_PREDECESSORS:
 				return getLinksToPredecessors();
 			case SimplepdlPackage.WORK_DEFINITION__LINKS_TO_SUCCESSORS:
 				return getLinksToSuccessors();
-			case SimplepdlPackage.WORK_DEFINITION__NAME:
-				return getName();
-			case SimplepdlPackage.WORK_DEFINITION__NEED:
-				return getNeed();
+			case SimplepdlPackage.WORK_DEFINITION__RESOURCE_USAGES:
+				return getResourceUsages();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -238,6 +237,9 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SimplepdlPackage.WORK_DEFINITION__NAME:
+				setName((String)newValue);
+				return;
 			case SimplepdlPackage.WORK_DEFINITION__LINKS_TO_PREDECESSORS:
 				getLinksToPredecessors().clear();
 				getLinksToPredecessors().addAll((Collection<? extends WorkSequence>)newValue);
@@ -246,12 +248,9 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
 				getLinksToSuccessors().clear();
 				getLinksToSuccessors().addAll((Collection<? extends WorkSequence>)newValue);
 				return;
-			case SimplepdlPackage.WORK_DEFINITION__NAME:
-				setName((String)newValue);
-				return;
-			case SimplepdlPackage.WORK_DEFINITION__NEED:
-				getNeed().clear();
-				getNeed().addAll((Collection<? extends Need>)newValue);
+			case SimplepdlPackage.WORK_DEFINITION__RESOURCE_USAGES:
+				getResourceUsages().clear();
+				getResourceUsages().addAll((Collection<? extends RessourceAllocation>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -265,17 +264,17 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SimplepdlPackage.WORK_DEFINITION__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case SimplepdlPackage.WORK_DEFINITION__LINKS_TO_PREDECESSORS:
 				getLinksToPredecessors().clear();
 				return;
 			case SimplepdlPackage.WORK_DEFINITION__LINKS_TO_SUCCESSORS:
 				getLinksToSuccessors().clear();
 				return;
-			case SimplepdlPackage.WORK_DEFINITION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SimplepdlPackage.WORK_DEFINITION__NEED:
-				getNeed().clear();
+			case SimplepdlPackage.WORK_DEFINITION__RESOURCE_USAGES:
+				getResourceUsages().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -289,14 +288,14 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SimplepdlPackage.WORK_DEFINITION__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case SimplepdlPackage.WORK_DEFINITION__LINKS_TO_PREDECESSORS:
 				return linksToPredecessors != null && !linksToPredecessors.isEmpty();
 			case SimplepdlPackage.WORK_DEFINITION__LINKS_TO_SUCCESSORS:
 				return linksToSuccessors != null && !linksToSuccessors.isEmpty();
-			case SimplepdlPackage.WORK_DEFINITION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SimplepdlPackage.WORK_DEFINITION__NEED:
-				return need != null && !need.isEmpty();
+			case SimplepdlPackage.WORK_DEFINITION__RESOURCE_USAGES:
+				return resourceUsages != null && !resourceUsages.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -315,12 +314,6 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
 		result.append(name);
 		result.append(')');
 		return result.toString();
-	}
-
-	@Override
-	public Process getProcess() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 } //WorkDefinitionImpl
