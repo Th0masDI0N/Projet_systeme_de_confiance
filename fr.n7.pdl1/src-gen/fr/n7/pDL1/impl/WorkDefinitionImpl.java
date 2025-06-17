@@ -4,13 +4,20 @@
 package fr.n7.pDL1.impl;
 
 import fr.n7.pDL1.PDL1Package;
+import fr.n7.pDL1.Resource;
 import fr.n7.pDL1.WorkDefinition;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,6 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link fr.n7.pDL1.impl.WorkDefinitionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link fr.n7.pDL1.impl.WorkDefinitionImpl#getResources <em>Resources</em>}</li>
  * </ul>
  *
  * @generated
@@ -46,6 +54,16 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getResources() <em>Resources</em>}' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getResources()
+   * @generated
+   * @ordered
+   */
+  protected EList<Resource> resources;
 
   /**
    * <!-- begin-user-doc -->
@@ -99,12 +117,29 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
    * @generated
    */
   @Override
+  public EList<Resource> getResources()
+  {
+    if (resources == null)
+    {
+      resources = new EObjectResolvingEList<Resource>(Resource.class, this, PDL1Package.WORK_DEFINITION__RESOURCES);
+    }
+    return resources;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case PDL1Package.WORK_DEFINITION__NAME:
         return getName();
+      case PDL1Package.WORK_DEFINITION__RESOURCES:
+        return getResources();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -114,6 +149,7 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -121,6 +157,10 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
     {
       case PDL1Package.WORK_DEFINITION__NAME:
         setName((String)newValue);
+        return;
+      case PDL1Package.WORK_DEFINITION__RESOURCES:
+        getResources().clear();
+        getResources().addAll((Collection<? extends Resource>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -139,6 +179,9 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
       case PDL1Package.WORK_DEFINITION__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case PDL1Package.WORK_DEFINITION__RESOURCES:
+        getResources().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -155,6 +198,8 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
     {
       case PDL1Package.WORK_DEFINITION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case PDL1Package.WORK_DEFINITION__RESOURCES:
+        return resources != null && !resources.isEmpty();
     }
     return super.eIsSet(featureID);
   }

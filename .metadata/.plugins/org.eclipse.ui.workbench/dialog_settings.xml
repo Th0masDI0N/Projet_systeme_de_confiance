@@ -6,12 +6,18 @@
 			<item value="org.eclipse.ui.Basic"/>
 		</list>
 		<section name="ImportExportWizard.dialogBounds">
+			<item key="DIALOG_X_ORIGIN" value="693"/>
+			<item key="DIALOG_Y_ORIGIN" value="157"/>
+			<item key="DIALOG_WIDTH" value="541"/>
+			<item key="DIALOG_HEIGHT" value="550"/>
+			<item key="DIALOG_FONT_NAME" value="1|Ubuntu|11.0|0|GTK|1|"/>
 		</section>
 	</section>
 	<section name="FileSystemImportWizard">
 		<item key="WizardFileSystemResourceImportPage1.STORE_OVERWRITE_EXISTING_RESOURCES_ID" value="false"/>
 		<item key="WizardFileSystemResourceImportPage1.STORE_CREATE_CONTAINER_STRUCTURE_ID" value="false"/>
 		<list key="WizardFileSystemResourceImportPage1.STORE_SOURCE_NAMES_ID">
+			<item value="/home/n7student/2A/SystemeDeConfiance"/>
 			<item value="/home/n7student/2A/Métamodélisation/N7_IDM_Project-main/fr.n7.simplePDL/src/simplepdl/manip"/>
 			<item value="/home/n7student/2A/Métamodélisation/fr.n7.simplePDL"/>
 		</list>

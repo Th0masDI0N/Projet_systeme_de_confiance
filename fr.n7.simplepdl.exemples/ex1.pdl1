@@ -1,7 +1,13 @@
 process ex1 {
-  wd a
-  wd b
-  wd c
-  ws s2s from a to b
-  ws f2f from b to c
+	
+    resource Res1
+    resource Res2
+    
+    wd a uses Res1
+    wd b
+    wd c uses Res2
+
+    ws s2s from a to b
+    ws f2f from b to c
+
 }

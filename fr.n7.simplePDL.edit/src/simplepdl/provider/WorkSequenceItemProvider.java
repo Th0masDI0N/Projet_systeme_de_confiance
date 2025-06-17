@@ -2,7 +2,6 @@
  */
 package simplepdl.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -144,10 +143,9 @@ public class WorkSequenceItemProvider extends ProcessElementItemProvider {
 		String previous = ws.getPredecessor() == null ? "?" : ws.getPredecessor().getName();
 		String next = ws.getSuccessor() == null ? "?" : ws.getSuccessor().getName();
 		return label == null || label.length() == 0 ?
-		getString("_UI_WorkSequence_type") :
-		getString("_UI_WorkSequence_type") + " " + previous + " " + label + " " + next;
+			getString("_UI_WorkSequence_type") :
+			getString("_UI_WorkSequence_type") + " " + previous + " " + label + " " + next;
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -162,6 +160,8 @@ public class WorkSequenceItemProvider extends ProcessElementItemProvider {
 
 		switch (notification.getFeatureID(WorkSequence.class)) {
 			case SimplepdlPackage.WORK_SEQUENCE__LINK_TYPE:
+			case SimplepdlPackage.WORK_SEQUENCE__PREDECESSOR:
+			case SimplepdlPackage.WORK_SEQUENCE__SUCCESSOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

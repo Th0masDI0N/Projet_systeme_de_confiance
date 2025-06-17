@@ -35,15 +35,19 @@ public class PDL1Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getWorkSequenceTypeAccess().getAlternatives(), "rule__WorkSequenceType__Alternatives");
 			builder.put(grammarAccess.getProcessAccess().getGroup(), "rule__Process__Group__0");
 			builder.put(grammarAccess.getWorkDefinitionAccess().getGroup(), "rule__WorkDefinition__Group__0");
+			builder.put(grammarAccess.getWorkDefinitionAccess().getGroup_2(), "rule__WorkDefinition__Group_2__0");
 			builder.put(grammarAccess.getWorkSequenceAccess().getGroup(), "rule__WorkSequence__Group__0");
 			builder.put(grammarAccess.getGuidanceAccess().getGroup(), "rule__Guidance__Group__0");
+			builder.put(grammarAccess.getResourceAccess().getGroup(), "rule__Resource__Group__0");
 			builder.put(grammarAccess.getProcessAccess().getNameAssignment_1(), "rule__Process__NameAssignment_1");
 			builder.put(grammarAccess.getProcessAccess().getProcessElementsAssignment_3(), "rule__Process__ProcessElementsAssignment_3");
 			builder.put(grammarAccess.getWorkDefinitionAccess().getNameAssignment_1(), "rule__WorkDefinition__NameAssignment_1");
+			builder.put(grammarAccess.getWorkDefinitionAccess().getResourcesAssignment_2_1(), "rule__WorkDefinition__ResourcesAssignment_2_1");
 			builder.put(grammarAccess.getWorkSequenceAccess().getLinkTypeAssignment_1(), "rule__WorkSequence__LinkTypeAssignment_1");
 			builder.put(grammarAccess.getWorkSequenceAccess().getPredecessorAssignment_3(), "rule__WorkSequence__PredecessorAssignment_3");
 			builder.put(grammarAccess.getWorkSequenceAccess().getSuccessorAssignment_5(), "rule__WorkSequence__SuccessorAssignment_5");
 			builder.put(grammarAccess.getGuidanceAccess().getTexteAssignment_1(), "rule__Guidance__TexteAssignment_1");
+			builder.put(grammarAccess.getResourceAccess().getNameAssignment_1(), "rule__Resource__NameAssignment_1");
 		}
 	}
 	

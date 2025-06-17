@@ -134,13 +134,22 @@ public interface PDL1Package extends EPackage
   int WORK_DEFINITION__NAME = PROCESS_ELEMENT_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Resources</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int WORK_DEFINITION__RESOURCES = PROCESS_ELEMENT_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>Work Definition</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int WORK_DEFINITION_FEATURE_COUNT = PROCESS_ELEMENT_FEATURE_COUNT + 1;
+  int WORK_DEFINITION_FEATURE_COUNT = PROCESS_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link fr.n7.pDL1.impl.WorkSequenceImpl <em>Work Sequence</em>}' class.
@@ -217,6 +226,34 @@ public interface PDL1Package extends EPackage
   int GUIDANCE_FEATURE_COUNT = PROCESS_ELEMENT_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link fr.n7.pDL1.impl.ResourceImpl <em>Resource</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see fr.n7.pDL1.impl.ResourceImpl
+   * @see fr.n7.pDL1.impl.PDL1PackageImpl#getResource()
+   * @generated
+   */
+  int RESOURCE = 5;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RESOURCE__NAME = PROCESS_ELEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Resource</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RESOURCE_FEATURE_COUNT = PROCESS_ELEMENT_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link fr.n7.pDL1.WorkSequenceType <em>Work Sequence Type</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -224,7 +261,7 @@ public interface PDL1Package extends EPackage
    * @see fr.n7.pDL1.impl.PDL1PackageImpl#getWorkSequenceType()
    * @generated
    */
-  int WORK_SEQUENCE_TYPE = 5;
+  int WORK_SEQUENCE_TYPE = 6;
 
 
   /**
@@ -291,6 +328,17 @@ public interface PDL1Package extends EPackage
   EAttribute getWorkDefinition_Name();
 
   /**
+   * Returns the meta object for the reference list '{@link fr.n7.pDL1.WorkDefinition#getResources <em>Resources</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Resources</em>'.
+   * @see fr.n7.pDL1.WorkDefinition#getResources()
+   * @see #getWorkDefinition()
+   * @generated
+   */
+  EReference getWorkDefinition_Resources();
+
+  /**
    * Returns the meta object for class '{@link fr.n7.pDL1.WorkSequence <em>Work Sequence</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -353,6 +401,27 @@ public interface PDL1Package extends EPackage
    * @generated
    */
   EAttribute getGuidance_Texte();
+
+  /**
+   * Returns the meta object for class '{@link fr.n7.pDL1.Resource <em>Resource</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Resource</em>'.
+   * @see fr.n7.pDL1.Resource
+   * @generated
+   */
+  EClass getResource();
+
+  /**
+   * Returns the meta object for the attribute '{@link fr.n7.pDL1.Resource#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see fr.n7.pDL1.Resource#getName()
+   * @see #getResource()
+   * @generated
+   */
+  EAttribute getResource_Name();
 
   /**
    * Returns the meta object for enum '{@link fr.n7.pDL1.WorkSequenceType <em>Work Sequence Type</em>}'.
@@ -442,6 +511,14 @@ public interface PDL1Package extends EPackage
     EAttribute WORK_DEFINITION__NAME = eINSTANCE.getWorkDefinition_Name();
 
     /**
+     * The meta object literal for the '<em><b>Resources</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference WORK_DEFINITION__RESOURCES = eINSTANCE.getWorkDefinition_Resources();
+
+    /**
      * The meta object literal for the '{@link fr.n7.pDL1.impl.WorkSequenceImpl <em>Work Sequence</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -492,6 +569,24 @@ public interface PDL1Package extends EPackage
      * @generated
      */
     EAttribute GUIDANCE__TEXTE = eINSTANCE.getGuidance_Texte();
+
+    /**
+     * The meta object literal for the '{@link fr.n7.pDL1.impl.ResourceImpl <em>Resource</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see fr.n7.pDL1.impl.ResourceImpl
+     * @see fr.n7.pDL1.impl.PDL1PackageImpl#getResource()
+     * @generated
+     */
+    EClass RESOURCE = eINSTANCE.getResource();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RESOURCE__NAME = eINSTANCE.getResource_Name();
 
     /**
      * The meta object literal for the '{@link fr.n7.pDL1.WorkSequenceType <em>Work Sequence Type</em>}' enum.

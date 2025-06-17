@@ -7,6 +7,7 @@ import fr.n7.pDL1.Guidance;
 import fr.n7.pDL1.PDL1Factory;
 import fr.n7.pDL1.PDL1Package;
 import fr.n7.pDL1.ProcessElement;
+import fr.n7.pDL1.Resource;
 import fr.n7.pDL1.WorkDefinition;
 import fr.n7.pDL1.WorkSequence;
 import fr.n7.pDL1.WorkSequenceType;
@@ -61,6 +62,13 @@ public class PDL1PackageImpl extends EPackageImpl implements PDL1Package
    * @generated
    */
   private EClass guidanceEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass resourceEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -203,6 +211,17 @@ public class PDL1PackageImpl extends EPackageImpl implements PDL1Package
    * @generated
    */
   @Override
+  public EReference getWorkDefinition_Resources()
+  {
+    return (EReference)workDefinitionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getWorkSequence()
   {
     return workSequenceEClass;
@@ -269,6 +288,28 @@ public class PDL1PackageImpl extends EPackageImpl implements PDL1Package
    * @generated
    */
   @Override
+  public EClass getResource()
+  {
+    return resourceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getResource_Name()
+  {
+    return (EAttribute)resourceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EEnum getWorkSequenceType()
   {
     return workSequenceTypeEEnum;
@@ -313,6 +354,7 @@ public class PDL1PackageImpl extends EPackageImpl implements PDL1Package
 
     workDefinitionEClass = createEClass(WORK_DEFINITION);
     createEAttribute(workDefinitionEClass, WORK_DEFINITION__NAME);
+    createEReference(workDefinitionEClass, WORK_DEFINITION__RESOURCES);
 
     workSequenceEClass = createEClass(WORK_SEQUENCE);
     createEAttribute(workSequenceEClass, WORK_SEQUENCE__LINK_TYPE);
@@ -321,6 +363,9 @@ public class PDL1PackageImpl extends EPackageImpl implements PDL1Package
 
     guidanceEClass = createEClass(GUIDANCE);
     createEAttribute(guidanceEClass, GUIDANCE__TEXTE);
+
+    resourceEClass = createEClass(RESOURCE);
+    createEAttribute(resourceEClass, RESOURCE__NAME);
 
     // Create enums
     workSequenceTypeEEnum = createEEnum(WORK_SEQUENCE_TYPE);
@@ -358,6 +403,7 @@ public class PDL1PackageImpl extends EPackageImpl implements PDL1Package
     workDefinitionEClass.getESuperTypes().add(this.getProcessElement());
     workSequenceEClass.getESuperTypes().add(this.getProcessElement());
     guidanceEClass.getESuperTypes().add(this.getProcessElement());
+    resourceEClass.getESuperTypes().add(this.getProcessElement());
 
     // Initialize classes and features; add operations and parameters
     initEClass(processEClass, fr.n7.pDL1.Process.class, "Process", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -368,6 +414,7 @@ public class PDL1PackageImpl extends EPackageImpl implements PDL1Package
 
     initEClass(workDefinitionEClass, WorkDefinition.class, "WorkDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getWorkDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, WorkDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getWorkDefinition_Resources(), this.getResource(), null, "resources", null, 0, -1, WorkDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(workSequenceEClass, WorkSequence.class, "WorkSequence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getWorkSequence_LinkType(), this.getWorkSequenceType(), "linkType", null, 0, 1, WorkSequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -376,6 +423,9 @@ public class PDL1PackageImpl extends EPackageImpl implements PDL1Package
 
     initEClass(guidanceEClass, Guidance.class, "Guidance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getGuidance_Texte(), ecorePackage.getEString(), "texte", null, 0, 1, Guidance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(resourceEClass, Resource.class, "Resource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getResource_Name(), ecorePackage.getEString(), "name", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(workSequenceTypeEEnum, WorkSequenceType.class, "WorkSequenceType");

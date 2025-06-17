@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalPDL1Parser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'process'", "'{'", "'}'", "'wd'", "'ws'", "'from'", "'to'", "'note'", "'s2s'", "'f2s'", "'s2f'", "'f2f'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'process'", "'{'", "'}'", "'wd'", "'uses'", "'ws'", "'from'", "'to'", "'note'", "'resource'", "'s2s'", "'f2s'", "'s2f'", "'f2f'"
     };
     public static final int RULE_STRING=5;
     public static final int RULE_SL_COMMENT=8;
@@ -42,6 +42,8 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
     public static final int RULE_INT=6;
     public static final int T__22=22;
     public static final int RULE_ML_COMMENT=7;
+    public static final int T__23=23;
+    public static final int T__24=24;
     public static final int T__20=20;
     public static final int T__21=21;
 
@@ -182,7 +184,7 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( ((LA1_0>=14 && LA1_0<=15)||LA1_0==18) ) {
+                if ( (LA1_0==14||LA1_0==16||(LA1_0>=19 && LA1_0<=20)) ) {
                     alt1=1;
                 }
 
@@ -288,7 +290,7 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleProcessElement"
-    // InternalPDL1.g:140:1: ruleProcessElement returns [EObject current=null] : (this_WorkDefinition_0= ruleWorkDefinition | this_WorkSequence_1= ruleWorkSequence | this_Guidance_2= ruleGuidance ) ;
+    // InternalPDL1.g:140:1: ruleProcessElement returns [EObject current=null] : (this_WorkDefinition_0= ruleWorkDefinition | this_WorkSequence_1= ruleWorkSequence | this_Guidance_2= ruleGuidance | this_Resource_3= ruleResource ) ;
     public final EObject ruleProcessElement() throws RecognitionException {
         EObject current = null;
 
@@ -298,30 +300,37 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
 
         EObject this_Guidance_2 = null;
 
+        EObject this_Resource_3 = null;
+
 
 
         	enterRule();
 
         try {
-            // InternalPDL1.g:146:2: ( (this_WorkDefinition_0= ruleWorkDefinition | this_WorkSequence_1= ruleWorkSequence | this_Guidance_2= ruleGuidance ) )
-            // InternalPDL1.g:147:2: (this_WorkDefinition_0= ruleWorkDefinition | this_WorkSequence_1= ruleWorkSequence | this_Guidance_2= ruleGuidance )
+            // InternalPDL1.g:146:2: ( (this_WorkDefinition_0= ruleWorkDefinition | this_WorkSequence_1= ruleWorkSequence | this_Guidance_2= ruleGuidance | this_Resource_3= ruleResource ) )
+            // InternalPDL1.g:147:2: (this_WorkDefinition_0= ruleWorkDefinition | this_WorkSequence_1= ruleWorkSequence | this_Guidance_2= ruleGuidance | this_Resource_3= ruleResource )
             {
-            // InternalPDL1.g:147:2: (this_WorkDefinition_0= ruleWorkDefinition | this_WorkSequence_1= ruleWorkSequence | this_Guidance_2= ruleGuidance )
-            int alt2=3;
+            // InternalPDL1.g:147:2: (this_WorkDefinition_0= ruleWorkDefinition | this_WorkSequence_1= ruleWorkSequence | this_Guidance_2= ruleGuidance | this_Resource_3= ruleResource )
+            int alt2=4;
             switch ( input.LA(1) ) {
             case 14:
                 {
                 alt2=1;
                 }
                 break;
-            case 15:
+            case 16:
                 {
                 alt2=2;
                 }
                 break;
-            case 18:
+            case 19:
                 {
                 alt2=3;
+                }
+                break;
+            case 20:
+                {
+                alt2=4;
                 }
                 break;
             default:
@@ -386,6 +395,24 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
 
                     }
                     break;
+                case 4 :
+                    // InternalPDL1.g:175:3: this_Resource_3= ruleResource
+                    {
+
+                    			newCompositeNode(grammarAccess.getProcessElementAccess().getResourceParserRuleCall_3());
+                    		
+                    pushFollow(FOLLOW_2);
+                    this_Resource_3=ruleResource();
+
+                    state._fsp--;
+
+
+                    			current = this_Resource_3;
+                    			afterParserOrEnumRuleCall();
+                    		
+
+                    }
+                    break;
 
             }
 
@@ -409,7 +436,7 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleWorkDefinition"
-    // InternalPDL1.g:178:1: entryRuleWorkDefinition returns [EObject current=null] : iv_ruleWorkDefinition= ruleWorkDefinition EOF ;
+    // InternalPDL1.g:187:1: entryRuleWorkDefinition returns [EObject current=null] : iv_ruleWorkDefinition= ruleWorkDefinition EOF ;
     public final EObject entryRuleWorkDefinition() throws RecognitionException {
         EObject current = null;
 
@@ -417,8 +444,8 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPDL1.g:178:55: (iv_ruleWorkDefinition= ruleWorkDefinition EOF )
-            // InternalPDL1.g:179:2: iv_ruleWorkDefinition= ruleWorkDefinition EOF
+            // InternalPDL1.g:187:55: (iv_ruleWorkDefinition= ruleWorkDefinition EOF )
+            // InternalPDL1.g:188:2: iv_ruleWorkDefinition= ruleWorkDefinition EOF
             {
              newCompositeNode(grammarAccess.getWorkDefinitionRule()); 
             pushFollow(FOLLOW_1);
@@ -445,34 +472,36 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleWorkDefinition"
-    // InternalPDL1.g:185:1: ruleWorkDefinition returns [EObject current=null] : (otherlv_0= 'wd' ( (lv_name_1_0= RULE_ID ) ) ) ;
+    // InternalPDL1.g:194:1: ruleWorkDefinition returns [EObject current=null] : (otherlv_0= 'wd' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'uses' ( (otherlv_3= RULE_ID ) ) )? ) ;
     public final EObject ruleWorkDefinition() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token lv_name_1_0=null;
+        Token otherlv_2=null;
+        Token otherlv_3=null;
 
 
         	enterRule();
 
         try {
-            // InternalPDL1.g:191:2: ( (otherlv_0= 'wd' ( (lv_name_1_0= RULE_ID ) ) ) )
-            // InternalPDL1.g:192:2: (otherlv_0= 'wd' ( (lv_name_1_0= RULE_ID ) ) )
+            // InternalPDL1.g:200:2: ( (otherlv_0= 'wd' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'uses' ( (otherlv_3= RULE_ID ) ) )? ) )
+            // InternalPDL1.g:201:2: (otherlv_0= 'wd' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'uses' ( (otherlv_3= RULE_ID ) ) )? )
             {
-            // InternalPDL1.g:192:2: (otherlv_0= 'wd' ( (lv_name_1_0= RULE_ID ) ) )
-            // InternalPDL1.g:193:3: otherlv_0= 'wd' ( (lv_name_1_0= RULE_ID ) )
+            // InternalPDL1.g:201:2: (otherlv_0= 'wd' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'uses' ( (otherlv_3= RULE_ID ) ) )? )
+            // InternalPDL1.g:202:3: otherlv_0= 'wd' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'uses' ( (otherlv_3= RULE_ID ) ) )?
             {
             otherlv_0=(Token)match(input,14,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getWorkDefinitionAccess().getWdKeyword_0());
             		
-            // InternalPDL1.g:197:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalPDL1.g:198:4: (lv_name_1_0= RULE_ID )
+            // InternalPDL1.g:206:3: ( (lv_name_1_0= RULE_ID ) )
+            // InternalPDL1.g:207:4: (lv_name_1_0= RULE_ID )
             {
-            // InternalPDL1.g:198:4: (lv_name_1_0= RULE_ID )
-            // InternalPDL1.g:199:5: lv_name_1_0= RULE_ID
+            // InternalPDL1.g:207:4: (lv_name_1_0= RULE_ID )
+            // InternalPDL1.g:208:5: lv_name_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_2); 
+            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_6); 
 
             					newLeafNode(lv_name_1_0, grammarAccess.getWorkDefinitionAccess().getNameIDTerminalRuleCall_1_0());
             				
@@ -489,6 +518,48 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
 
             }
 
+
+            }
+
+            // InternalPDL1.g:224:3: (otherlv_2= 'uses' ( (otherlv_3= RULE_ID ) ) )?
+            int alt3=2;
+            int LA3_0 = input.LA(1);
+
+            if ( (LA3_0==15) ) {
+                alt3=1;
+            }
+            switch (alt3) {
+                case 1 :
+                    // InternalPDL1.g:225:4: otherlv_2= 'uses' ( (otherlv_3= RULE_ID ) )
+                    {
+                    otherlv_2=(Token)match(input,15,FOLLOW_3); 
+
+                    				newLeafNode(otherlv_2, grammarAccess.getWorkDefinitionAccess().getUsesKeyword_2_0());
+                    			
+                    // InternalPDL1.g:229:4: ( (otherlv_3= RULE_ID ) )
+                    // InternalPDL1.g:230:5: (otherlv_3= RULE_ID )
+                    {
+                    // InternalPDL1.g:230:5: (otherlv_3= RULE_ID )
+                    // InternalPDL1.g:231:6: otherlv_3= RULE_ID
+                    {
+
+                    						if (current==null) {
+                    							current = createModelElement(grammarAccess.getWorkDefinitionRule());
+                    						}
+                    					
+                    otherlv_3=(Token)match(input,RULE_ID,FOLLOW_2); 
+
+                    						newLeafNode(otherlv_3, grammarAccess.getWorkDefinitionAccess().getResourcesResourceCrossReference_2_1_0());
+                    					
+
+                    }
+
+
+                    }
+
+
+                    }
+                    break;
 
             }
 
@@ -515,7 +586,7 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleWorkSequence"
-    // InternalPDL1.g:219:1: entryRuleWorkSequence returns [EObject current=null] : iv_ruleWorkSequence= ruleWorkSequence EOF ;
+    // InternalPDL1.g:247:1: entryRuleWorkSequence returns [EObject current=null] : iv_ruleWorkSequence= ruleWorkSequence EOF ;
     public final EObject entryRuleWorkSequence() throws RecognitionException {
         EObject current = null;
 
@@ -523,8 +594,8 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPDL1.g:219:53: (iv_ruleWorkSequence= ruleWorkSequence EOF )
-            // InternalPDL1.g:220:2: iv_ruleWorkSequence= ruleWorkSequence EOF
+            // InternalPDL1.g:247:53: (iv_ruleWorkSequence= ruleWorkSequence EOF )
+            // InternalPDL1.g:248:2: iv_ruleWorkSequence= ruleWorkSequence EOF
             {
              newCompositeNode(grammarAccess.getWorkSequenceRule()); 
             pushFollow(FOLLOW_1);
@@ -551,7 +622,7 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleWorkSequence"
-    // InternalPDL1.g:226:1: ruleWorkSequence returns [EObject current=null] : (otherlv_0= 'ws' ( (lv_linkType_1_0= ruleWorkSequenceType ) ) otherlv_2= 'from' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'to' ( (otherlv_5= RULE_ID ) ) ) ;
+    // InternalPDL1.g:254:1: ruleWorkSequence returns [EObject current=null] : (otherlv_0= 'ws' ( (lv_linkType_1_0= ruleWorkSequenceType ) ) otherlv_2= 'from' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'to' ( (otherlv_5= RULE_ID ) ) ) ;
     public final EObject ruleWorkSequence() throws RecognitionException {
         EObject current = null;
 
@@ -567,26 +638,26 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPDL1.g:232:2: ( (otherlv_0= 'ws' ( (lv_linkType_1_0= ruleWorkSequenceType ) ) otherlv_2= 'from' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'to' ( (otherlv_5= RULE_ID ) ) ) )
-            // InternalPDL1.g:233:2: (otherlv_0= 'ws' ( (lv_linkType_1_0= ruleWorkSequenceType ) ) otherlv_2= 'from' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'to' ( (otherlv_5= RULE_ID ) ) )
+            // InternalPDL1.g:260:2: ( (otherlv_0= 'ws' ( (lv_linkType_1_0= ruleWorkSequenceType ) ) otherlv_2= 'from' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'to' ( (otherlv_5= RULE_ID ) ) ) )
+            // InternalPDL1.g:261:2: (otherlv_0= 'ws' ( (lv_linkType_1_0= ruleWorkSequenceType ) ) otherlv_2= 'from' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'to' ( (otherlv_5= RULE_ID ) ) )
             {
-            // InternalPDL1.g:233:2: (otherlv_0= 'ws' ( (lv_linkType_1_0= ruleWorkSequenceType ) ) otherlv_2= 'from' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'to' ( (otherlv_5= RULE_ID ) ) )
-            // InternalPDL1.g:234:3: otherlv_0= 'ws' ( (lv_linkType_1_0= ruleWorkSequenceType ) ) otherlv_2= 'from' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'to' ( (otherlv_5= RULE_ID ) )
+            // InternalPDL1.g:261:2: (otherlv_0= 'ws' ( (lv_linkType_1_0= ruleWorkSequenceType ) ) otherlv_2= 'from' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'to' ( (otherlv_5= RULE_ID ) ) )
+            // InternalPDL1.g:262:3: otherlv_0= 'ws' ( (lv_linkType_1_0= ruleWorkSequenceType ) ) otherlv_2= 'from' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'to' ( (otherlv_5= RULE_ID ) )
             {
-            otherlv_0=(Token)match(input,15,FOLLOW_6); 
+            otherlv_0=(Token)match(input,16,FOLLOW_7); 
 
             			newLeafNode(otherlv_0, grammarAccess.getWorkSequenceAccess().getWsKeyword_0());
             		
-            // InternalPDL1.g:238:3: ( (lv_linkType_1_0= ruleWorkSequenceType ) )
-            // InternalPDL1.g:239:4: (lv_linkType_1_0= ruleWorkSequenceType )
+            // InternalPDL1.g:266:3: ( (lv_linkType_1_0= ruleWorkSequenceType ) )
+            // InternalPDL1.g:267:4: (lv_linkType_1_0= ruleWorkSequenceType )
             {
-            // InternalPDL1.g:239:4: (lv_linkType_1_0= ruleWorkSequenceType )
-            // InternalPDL1.g:240:5: lv_linkType_1_0= ruleWorkSequenceType
+            // InternalPDL1.g:267:4: (lv_linkType_1_0= ruleWorkSequenceType )
+            // InternalPDL1.g:268:5: lv_linkType_1_0= ruleWorkSequenceType
             {
 
             					newCompositeNode(grammarAccess.getWorkSequenceAccess().getLinkTypeWorkSequenceTypeEnumRuleCall_1_0());
             				
-            pushFollow(FOLLOW_7);
+            pushFollow(FOLLOW_8);
             lv_linkType_1_0=ruleWorkSequenceType();
 
             state._fsp--;
@@ -608,22 +679,22 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,16,FOLLOW_3); 
+            otherlv_2=(Token)match(input,17,FOLLOW_3); 
 
             			newLeafNode(otherlv_2, grammarAccess.getWorkSequenceAccess().getFromKeyword_2());
             		
-            // InternalPDL1.g:261:3: ( (otherlv_3= RULE_ID ) )
-            // InternalPDL1.g:262:4: (otherlv_3= RULE_ID )
+            // InternalPDL1.g:289:3: ( (otherlv_3= RULE_ID ) )
+            // InternalPDL1.g:290:4: (otherlv_3= RULE_ID )
             {
-            // InternalPDL1.g:262:4: (otherlv_3= RULE_ID )
-            // InternalPDL1.g:263:5: otherlv_3= RULE_ID
+            // InternalPDL1.g:290:4: (otherlv_3= RULE_ID )
+            // InternalPDL1.g:291:5: otherlv_3= RULE_ID
             {
 
             					if (current==null) {
             						current = createModelElement(grammarAccess.getWorkSequenceRule());
             					}
             				
-            otherlv_3=(Token)match(input,RULE_ID,FOLLOW_8); 
+            otherlv_3=(Token)match(input,RULE_ID,FOLLOW_9); 
 
             					newLeafNode(otherlv_3, grammarAccess.getWorkSequenceAccess().getPredecessorWorkDefinitionCrossReference_3_0());
             				
@@ -633,15 +704,15 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,17,FOLLOW_3); 
+            otherlv_4=(Token)match(input,18,FOLLOW_3); 
 
             			newLeafNode(otherlv_4, grammarAccess.getWorkSequenceAccess().getToKeyword_4());
             		
-            // InternalPDL1.g:278:3: ( (otherlv_5= RULE_ID ) )
-            // InternalPDL1.g:279:4: (otherlv_5= RULE_ID )
+            // InternalPDL1.g:306:3: ( (otherlv_5= RULE_ID ) )
+            // InternalPDL1.g:307:4: (otherlv_5= RULE_ID )
             {
-            // InternalPDL1.g:279:4: (otherlv_5= RULE_ID )
-            // InternalPDL1.g:280:5: otherlv_5= RULE_ID
+            // InternalPDL1.g:307:4: (otherlv_5= RULE_ID )
+            // InternalPDL1.g:308:5: otherlv_5= RULE_ID
             {
 
             					if (current==null) {
@@ -681,7 +752,7 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleGuidance"
-    // InternalPDL1.g:295:1: entryRuleGuidance returns [EObject current=null] : iv_ruleGuidance= ruleGuidance EOF ;
+    // InternalPDL1.g:323:1: entryRuleGuidance returns [EObject current=null] : iv_ruleGuidance= ruleGuidance EOF ;
     public final EObject entryRuleGuidance() throws RecognitionException {
         EObject current = null;
 
@@ -689,8 +760,8 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPDL1.g:295:49: (iv_ruleGuidance= ruleGuidance EOF )
-            // InternalPDL1.g:296:2: iv_ruleGuidance= ruleGuidance EOF
+            // InternalPDL1.g:323:49: (iv_ruleGuidance= ruleGuidance EOF )
+            // InternalPDL1.g:324:2: iv_ruleGuidance= ruleGuidance EOF
             {
              newCompositeNode(grammarAccess.getGuidanceRule()); 
             pushFollow(FOLLOW_1);
@@ -717,7 +788,7 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleGuidance"
-    // InternalPDL1.g:302:1: ruleGuidance returns [EObject current=null] : (otherlv_0= 'note' ( (lv_texte_1_0= RULE_STRING ) ) ) ;
+    // InternalPDL1.g:330:1: ruleGuidance returns [EObject current=null] : (otherlv_0= 'note' ( (lv_texte_1_0= RULE_STRING ) ) ) ;
     public final EObject ruleGuidance() throws RecognitionException {
         EObject current = null;
 
@@ -728,21 +799,21 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPDL1.g:308:2: ( (otherlv_0= 'note' ( (lv_texte_1_0= RULE_STRING ) ) ) )
-            // InternalPDL1.g:309:2: (otherlv_0= 'note' ( (lv_texte_1_0= RULE_STRING ) ) )
+            // InternalPDL1.g:336:2: ( (otherlv_0= 'note' ( (lv_texte_1_0= RULE_STRING ) ) ) )
+            // InternalPDL1.g:337:2: (otherlv_0= 'note' ( (lv_texte_1_0= RULE_STRING ) ) )
             {
-            // InternalPDL1.g:309:2: (otherlv_0= 'note' ( (lv_texte_1_0= RULE_STRING ) ) )
-            // InternalPDL1.g:310:3: otherlv_0= 'note' ( (lv_texte_1_0= RULE_STRING ) )
+            // InternalPDL1.g:337:2: (otherlv_0= 'note' ( (lv_texte_1_0= RULE_STRING ) ) )
+            // InternalPDL1.g:338:3: otherlv_0= 'note' ( (lv_texte_1_0= RULE_STRING ) )
             {
-            otherlv_0=(Token)match(input,18,FOLLOW_9); 
+            otherlv_0=(Token)match(input,19,FOLLOW_10); 
 
             			newLeafNode(otherlv_0, grammarAccess.getGuidanceAccess().getNoteKeyword_0());
             		
-            // InternalPDL1.g:314:3: ( (lv_texte_1_0= RULE_STRING ) )
-            // InternalPDL1.g:315:4: (lv_texte_1_0= RULE_STRING )
+            // InternalPDL1.g:342:3: ( (lv_texte_1_0= RULE_STRING ) )
+            // InternalPDL1.g:343:4: (lv_texte_1_0= RULE_STRING )
             {
-            // InternalPDL1.g:315:4: (lv_texte_1_0= RULE_STRING )
-            // InternalPDL1.g:316:5: lv_texte_1_0= RULE_STRING
+            // InternalPDL1.g:343:4: (lv_texte_1_0= RULE_STRING )
+            // InternalPDL1.g:344:5: lv_texte_1_0= RULE_STRING
             {
             lv_texte_1_0=(Token)match(input,RULE_STRING,FOLLOW_2); 
 
@@ -786,8 +857,114 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleGuidance"
 
 
+    // $ANTLR start "entryRuleResource"
+    // InternalPDL1.g:364:1: entryRuleResource returns [EObject current=null] : iv_ruleResource= ruleResource EOF ;
+    public final EObject entryRuleResource() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleResource = null;
+
+
+        try {
+            // InternalPDL1.g:364:49: (iv_ruleResource= ruleResource EOF )
+            // InternalPDL1.g:365:2: iv_ruleResource= ruleResource EOF
+            {
+             newCompositeNode(grammarAccess.getResourceRule()); 
+            pushFollow(FOLLOW_1);
+            iv_ruleResource=ruleResource();
+
+            state._fsp--;
+
+             current =iv_ruleResource; 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleResource"
+
+
+    // $ANTLR start "ruleResource"
+    // InternalPDL1.g:371:1: ruleResource returns [EObject current=null] : (otherlv_0= 'resource' ( (lv_name_1_0= RULE_ID ) ) ) ;
+    public final EObject ruleResource() throws RecognitionException {
+        EObject current = null;
+
+        Token otherlv_0=null;
+        Token lv_name_1_0=null;
+
+
+        	enterRule();
+
+        try {
+            // InternalPDL1.g:377:2: ( (otherlv_0= 'resource' ( (lv_name_1_0= RULE_ID ) ) ) )
+            // InternalPDL1.g:378:2: (otherlv_0= 'resource' ( (lv_name_1_0= RULE_ID ) ) )
+            {
+            // InternalPDL1.g:378:2: (otherlv_0= 'resource' ( (lv_name_1_0= RULE_ID ) ) )
+            // InternalPDL1.g:379:3: otherlv_0= 'resource' ( (lv_name_1_0= RULE_ID ) )
+            {
+            otherlv_0=(Token)match(input,20,FOLLOW_3); 
+
+            			newLeafNode(otherlv_0, grammarAccess.getResourceAccess().getResourceKeyword_0());
+            		
+            // InternalPDL1.g:383:3: ( (lv_name_1_0= RULE_ID ) )
+            // InternalPDL1.g:384:4: (lv_name_1_0= RULE_ID )
+            {
+            // InternalPDL1.g:384:4: (lv_name_1_0= RULE_ID )
+            // InternalPDL1.g:385:5: lv_name_1_0= RULE_ID
+            {
+            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_2); 
+
+            					newLeafNode(lv_name_1_0, grammarAccess.getResourceAccess().getNameIDTerminalRuleCall_1_0());
+            				
+
+            					if (current==null) {
+            						current = createModelElement(grammarAccess.getResourceRule());
+            					}
+            					setWithLastConsumed(
+            						current,
+            						"name",
+            						lv_name_1_0,
+            						"org.eclipse.xtext.common.Terminals.ID");
+            				
+
+            }
+
+
+            }
+
+
+            }
+
+
+            }
+
+
+            	leaveRule();
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleResource"
+
+
     // $ANTLR start "ruleWorkSequenceType"
-    // InternalPDL1.g:336:1: ruleWorkSequenceType returns [Enumerator current=null] : ( (enumLiteral_0= 's2s' ) | (enumLiteral_1= 'f2s' ) | (enumLiteral_2= 's2f' ) | (enumLiteral_3= 'f2f' ) ) ;
+    // InternalPDL1.g:405:1: ruleWorkSequenceType returns [Enumerator current=null] : ( (enumLiteral_0= 's2s' ) | (enumLiteral_1= 'f2s' ) | (enumLiteral_2= 's2f' ) | (enumLiteral_3= 'f2f' ) ) ;
     public final Enumerator ruleWorkSequenceType() throws RecognitionException {
         Enumerator current = null;
 
@@ -800,47 +977,47 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPDL1.g:342:2: ( ( (enumLiteral_0= 's2s' ) | (enumLiteral_1= 'f2s' ) | (enumLiteral_2= 's2f' ) | (enumLiteral_3= 'f2f' ) ) )
-            // InternalPDL1.g:343:2: ( (enumLiteral_0= 's2s' ) | (enumLiteral_1= 'f2s' ) | (enumLiteral_2= 's2f' ) | (enumLiteral_3= 'f2f' ) )
+            // InternalPDL1.g:411:2: ( ( (enumLiteral_0= 's2s' ) | (enumLiteral_1= 'f2s' ) | (enumLiteral_2= 's2f' ) | (enumLiteral_3= 'f2f' ) ) )
+            // InternalPDL1.g:412:2: ( (enumLiteral_0= 's2s' ) | (enumLiteral_1= 'f2s' ) | (enumLiteral_2= 's2f' ) | (enumLiteral_3= 'f2f' ) )
             {
-            // InternalPDL1.g:343:2: ( (enumLiteral_0= 's2s' ) | (enumLiteral_1= 'f2s' ) | (enumLiteral_2= 's2f' ) | (enumLiteral_3= 'f2f' ) )
-            int alt3=4;
+            // InternalPDL1.g:412:2: ( (enumLiteral_0= 's2s' ) | (enumLiteral_1= 'f2s' ) | (enumLiteral_2= 's2f' ) | (enumLiteral_3= 'f2f' ) )
+            int alt4=4;
             switch ( input.LA(1) ) {
-            case 19:
-                {
-                alt3=1;
-                }
-                break;
-            case 20:
-                {
-                alt3=2;
-                }
-                break;
             case 21:
                 {
-                alt3=3;
+                alt4=1;
                 }
                 break;
             case 22:
                 {
-                alt3=4;
+                alt4=2;
+                }
+                break;
+            case 23:
+                {
+                alt4=3;
+                }
+                break;
+            case 24:
+                {
+                alt4=4;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 3, 0, input);
+                    new NoViableAltException("", 4, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt3) {
+            switch (alt4) {
                 case 1 :
-                    // InternalPDL1.g:344:3: (enumLiteral_0= 's2s' )
+                    // InternalPDL1.g:413:3: (enumLiteral_0= 's2s' )
                     {
-                    // InternalPDL1.g:344:3: (enumLiteral_0= 's2s' )
-                    // InternalPDL1.g:345:4: enumLiteral_0= 's2s'
+                    // InternalPDL1.g:413:3: (enumLiteral_0= 's2s' )
+                    // InternalPDL1.g:414:4: enumLiteral_0= 's2s'
                     {
-                    enumLiteral_0=(Token)match(input,19,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,21,FOLLOW_2); 
 
                     				current = grammarAccess.getWorkSequenceTypeAccess().getStart2startEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_0, grammarAccess.getWorkSequenceTypeAccess().getStart2startEnumLiteralDeclaration_0());
@@ -852,12 +1029,12 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalPDL1.g:352:3: (enumLiteral_1= 'f2s' )
+                    // InternalPDL1.g:421:3: (enumLiteral_1= 'f2s' )
                     {
-                    // InternalPDL1.g:352:3: (enumLiteral_1= 'f2s' )
-                    // InternalPDL1.g:353:4: enumLiteral_1= 'f2s'
+                    // InternalPDL1.g:421:3: (enumLiteral_1= 'f2s' )
+                    // InternalPDL1.g:422:4: enumLiteral_1= 'f2s'
                     {
-                    enumLiteral_1=(Token)match(input,20,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,22,FOLLOW_2); 
 
                     				current = grammarAccess.getWorkSequenceTypeAccess().getFinish2startEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_1, grammarAccess.getWorkSequenceTypeAccess().getFinish2startEnumLiteralDeclaration_1());
@@ -869,12 +1046,12 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalPDL1.g:360:3: (enumLiteral_2= 's2f' )
+                    // InternalPDL1.g:429:3: (enumLiteral_2= 's2f' )
                     {
-                    // InternalPDL1.g:360:3: (enumLiteral_2= 's2f' )
-                    // InternalPDL1.g:361:4: enumLiteral_2= 's2f'
+                    // InternalPDL1.g:429:3: (enumLiteral_2= 's2f' )
+                    // InternalPDL1.g:430:4: enumLiteral_2= 's2f'
                     {
-                    enumLiteral_2=(Token)match(input,21,FOLLOW_2); 
+                    enumLiteral_2=(Token)match(input,23,FOLLOW_2); 
 
                     				current = grammarAccess.getWorkSequenceTypeAccess().getStart2finishEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_2, grammarAccess.getWorkSequenceTypeAccess().getStart2finishEnumLiteralDeclaration_2());
@@ -886,12 +1063,12 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalPDL1.g:368:3: (enumLiteral_3= 'f2f' )
+                    // InternalPDL1.g:437:3: (enumLiteral_3= 'f2f' )
                     {
-                    // InternalPDL1.g:368:3: (enumLiteral_3= 'f2f' )
-                    // InternalPDL1.g:369:4: enumLiteral_3= 'f2f'
+                    // InternalPDL1.g:437:3: (enumLiteral_3= 'f2f' )
+                    // InternalPDL1.g:438:4: enumLiteral_3= 'f2f'
                     {
-                    enumLiteral_3=(Token)match(input,22,FOLLOW_2); 
+                    enumLiteral_3=(Token)match(input,24,FOLLOW_2); 
 
                     				current = grammarAccess.getWorkSequenceTypeAccess().getFinish2finishEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_3, grammarAccess.getWorkSequenceTypeAccess().getFinish2finishEnumLiteralDeclaration_3());
@@ -932,10 +1109,11 @@ public class InternalPDL1Parser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x000000000004E000L});
-    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000780000L});
-    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000196000L});
+    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000008002L});
+    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000001E00000L});
     public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000000020L});
 
 }

@@ -36,10 +36,10 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cProcessElementsProcessElementParserRuleCall_3_0 = (RuleCall)cProcessElementsAssignment_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
-		//Process :
+		//Process:
 		//    'process' name=ID '{'
 		//        processElements+=ProcessElement*
-		//    '}' ;
+		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'process' name=ID '{'
@@ -74,12 +74,13 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cWorkDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cWorkSequenceParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cGuidanceParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cResourceParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
-		//ProcessElement :
-		//    WorkDefinition | WorkSequence | Guidance;
+		//ProcessElement:
+		//    WorkDefinition | WorkSequence | Guidance | Resource;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//WorkDefinition | WorkSequence | Guidance
+		//WorkDefinition | WorkSequence | Guidance | Resource
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//WorkDefinition
@@ -90,6 +91,9 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		
 		//Guidance
 		public RuleCall getGuidanceParserRuleCall_2() { return cGuidanceParserRuleCall_2; }
+		
+		//Resource
+		public RuleCall getResourceParserRuleCall_3() { return cResourceParserRuleCall_3; }
 	}
 	public class WorkDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.n7.PDL1.WorkDefinition");
@@ -97,12 +101,17 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cWdKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cUsesKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cResourcesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final CrossReference cResourcesResourceCrossReference_2_1_0 = (CrossReference)cResourcesAssignment_2_1.eContents().get(0);
+		private final RuleCall cResourcesResourceIDTerminalRuleCall_2_1_0_1 = (RuleCall)cResourcesResourceCrossReference_2_1_0.eContents().get(1);
 		
-		//WorkDefinition :
-		//    'wd' name=ID;
+		//WorkDefinition:
+		//    'wd' name=ID ('uses' resources+=[Resource])?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'wd' name=ID
+		//'wd' name=ID ('uses' resources+=[Resource])?
 		public Group getGroup() { return cGroup; }
 		
 		//'wd'
@@ -113,6 +122,21 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//('uses' resources+=[Resource])?
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//'uses'
+		public Keyword getUsesKeyword_2_0() { return cUsesKeyword_2_0; }
+		
+		//resources+=[Resource]
+		public Assignment getResourcesAssignment_2_1() { return cResourcesAssignment_2_1; }
+		
+		//[Resource]
+		public CrossReference getResourcesResourceCrossReference_2_1_0() { return cResourcesResourceCrossReference_2_1_0; }
+		
+		//ID
+		public RuleCall getResourcesResourceIDTerminalRuleCall_2_1_0_1() { return cResourcesResourceIDTerminalRuleCall_2_1_0_1; }
 	}
 	public class WorkSequenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.n7.PDL1.WorkSequence");
@@ -129,10 +153,10 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final CrossReference cSuccessorWorkDefinitionCrossReference_5_0 = (CrossReference)cSuccessorAssignment_5.eContents().get(0);
 		private final RuleCall cSuccessorWorkDefinitionIDTerminalRuleCall_5_0_1 = (RuleCall)cSuccessorWorkDefinitionCrossReference_5_0.eContents().get(1);
 		
-		//WorkSequence :
+		//WorkSequence:
 		//    'ws' linkType=WorkSequenceType
 		//        'from' predecessor=[WorkDefinition]
-		//        'to' successor=[WorkDefinition] ;
+		//        'to' successor=[WorkDefinition];
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'ws' linkType=WorkSequenceType
@@ -180,8 +204,8 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Assignment cTexteAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cTexteSTRINGTerminalRuleCall_1_0 = (RuleCall)cTexteAssignment_1.eContents().get(0);
 		
-		//Guidance :
-		//    'note' texte=STRING ;
+		//Guidance:
+		//    'note' texte=STRING;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'note' texte=STRING
@@ -196,6 +220,29 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//STRING
 		public RuleCall getTexteSTRINGTerminalRuleCall_1_0() { return cTexteSTRINGTerminalRuleCall_1_0; }
 	}
+	public class ResourceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.n7.PDL1.Resource");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cResourceKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		
+		//Resource:
+		//    'resource' name=ID;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'resource' name=ID
+		public Group getGroup() { return cGroup; }
+		
+		//'resource'
+		public Keyword getResourceKeyword_0() { return cResourceKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+	}
 	
 	public class WorkSequenceTypeElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "fr.n7.PDL1.WorkSequenceType");
@@ -209,12 +256,11 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final EnumLiteralDeclaration cFinish2finishEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
 		private final Keyword cFinish2finishF2fKeyword_3_0 = (Keyword)cFinish2finishEnumLiteralDeclaration_3.eContents().get(0);
 		
-		//enum WorkSequenceType :
+		//enum WorkSequenceType:
 		//    start2start='s2s'
 		//    | finish2start='f2s'
 		//    | start2finish='s2f'
-		//    | finish2finish='f2f'
-		//    ;
+		//    | finish2finish='f2f';
 		public EnumRule getRule() { return rule; }
 		
 		//start2start='s2s'
@@ -254,6 +300,7 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	private final WorkSequenceElements pWorkSequence;
 	private final GuidanceElements pGuidance;
 	private final WorkSequenceTypeElements eWorkSequenceType;
+	private final ResourceElements pResource;
 	
 	private final Grammar grammar;
 	
@@ -270,6 +317,7 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		this.pWorkSequence = new WorkSequenceElements();
 		this.pGuidance = new GuidanceElements();
 		this.eWorkSequenceType = new WorkSequenceTypeElements();
+		this.pResource = new ResourceElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -299,10 +347,10 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 
 	
-	//Process :
+	//Process:
 	//    'process' name=ID '{'
 	//        processElements+=ProcessElement*
-	//    '}' ;
+	//    '}';
 	public ProcessElements getProcessAccess() {
 		return pProcess;
 	}
@@ -311,8 +359,8 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getProcessAccess().getRule();
 	}
 	
-	//ProcessElement :
-	//    WorkDefinition | WorkSequence | Guidance;
+	//ProcessElement:
+	//    WorkDefinition | WorkSequence | Guidance | Resource;
 	public ProcessElementElements getProcessElementAccess() {
 		return pProcessElement;
 	}
@@ -321,8 +369,8 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getProcessElementAccess().getRule();
 	}
 	
-	//WorkDefinition :
-	//    'wd' name=ID;
+	//WorkDefinition:
+	//    'wd' name=ID ('uses' resources+=[Resource])?;
 	public WorkDefinitionElements getWorkDefinitionAccess() {
 		return pWorkDefinition;
 	}
@@ -331,10 +379,10 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getWorkDefinitionAccess().getRule();
 	}
 	
-	//WorkSequence :
+	//WorkSequence:
 	//    'ws' linkType=WorkSequenceType
 	//        'from' predecessor=[WorkDefinition]
-	//        'to' successor=[WorkDefinition] ;
+	//        'to' successor=[WorkDefinition];
 	public WorkSequenceElements getWorkSequenceAccess() {
 		return pWorkSequence;
 	}
@@ -343,8 +391,8 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getWorkSequenceAccess().getRule();
 	}
 	
-	//Guidance :
-	//    'note' texte=STRING ;
+	//Guidance:
+	//    'note' texte=STRING;
 	public GuidanceElements getGuidanceAccess() {
 		return pGuidance;
 	}
@@ -353,18 +401,27 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getGuidanceAccess().getRule();
 	}
 	
-	//enum WorkSequenceType :
+	//enum WorkSequenceType:
 	//    start2start='s2s'
 	//    | finish2start='f2s'
 	//    | start2finish='s2f'
-	//    | finish2finish='f2f'
-	//    ;
+	//    | finish2finish='f2f';
 	public WorkSequenceTypeElements getWorkSequenceTypeAccess() {
 		return eWorkSequenceType;
 	}
 	
 	public EnumRule getWorkSequenceTypeRule() {
 		return getWorkSequenceTypeAccess().getRule();
+	}
+	
+	//Resource:
+	//    'resource' name=ID;
+	public ResourceElements getResourceAccess() {
+		return pResource;
+	}
+	
+	public ParserRule getResourceRule() {
+		return getResourceAccess().getRule();
 	}
 	
 	//terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;

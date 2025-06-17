@@ -171,6 +171,15 @@ ruleProcessElement returns [EObject current=null]
 			$current = $this_Guidance_2.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getProcessElementAccess().getResourceParserRuleCall_3());
+		}
+		this_Resource_3=ruleResource
+		{
+			$current = $this_Resource_3.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -212,6 +221,25 @@ ruleWorkDefinition returns [EObject current=null]
 				}
 			)
 		)
+		(
+			otherlv_2='uses'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getWorkDefinitionAccess().getUsesKeyword_2_0());
+			}
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getWorkDefinitionRule());
+						}
+					}
+					otherlv_3=RULE_ID
+					{
+						newLeafNode(otherlv_3, grammarAccess.getWorkDefinitionAccess().getResourcesResourceCrossReference_2_1_0());
+					}
+				)
+			)
+		)?
 	)
 ;
 
@@ -326,6 +354,47 @@ ruleGuidance returns [EObject current=null]
 						"texte",
 						lv_texte_1_0,
 						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleResource
+entryRuleResource returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getResourceRule()); }
+	iv_ruleResource=ruleResource
+	{ $current=$iv_ruleResource.current; }
+	EOF;
+
+// Rule Resource
+ruleResource returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='resource'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getResourceAccess().getResourceKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getResourceAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getResourceRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)

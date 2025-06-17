@@ -19,6 +19,7 @@
     <genClasses ecoreClass="PDL1.ecore#//ProcessElement"/>
     <genClasses ecoreClass="PDL1.ecore#//WorkDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PDL1.ecore#//WorkDefinition/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PDL1.ecore#//WorkDefinition/resources"/>
     </genClasses>
     <genClasses ecoreClass="PDL1.ecore#//WorkSequence">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PDL1.ecore#//WorkSequence/linkType"/>
@@ -27,6 +28,9 @@
     </genClasses>
     <genClasses ecoreClass="PDL1.ecore#//Guidance">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PDL1.ecore#//Guidance/texte"/>
+    </genClasses>
+    <genClasses ecoreClass="PDL1.ecore#//Resource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PDL1.ecore#//Resource/name"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

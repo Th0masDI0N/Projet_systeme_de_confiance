@@ -6,6 +6,7 @@ package fr.n7.pDL1.util;
 import fr.n7.pDL1.Guidance;
 import fr.n7.pDL1.PDL1Package;
 import fr.n7.pDL1.ProcessElement;
+import fr.n7.pDL1.Resource;
 import fr.n7.pDL1.WorkDefinition;
 import fr.n7.pDL1.WorkSequence;
 
@@ -115,6 +116,14 @@ public class PDL1Switch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case PDL1Package.RESOURCE:
+      {
+        Resource resource = (Resource)theEObject;
+        T result = caseResource(resource);
+        if (result == null) result = caseProcessElement(resource);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
@@ -195,6 +204,22 @@ public class PDL1Switch<T> extends Switch<T>
    * @generated
    */
   public T caseGuidance(Guidance object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Resource</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Resource</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseResource(Resource object)
   {
     return null;
   }
