@@ -1,5 +1,8 @@
 package simplepdl.validation;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -68,20 +71,43 @@ public class SimplePDLValidator extends SimplepdlSwitch<Boolean> {
 	 * vers les classes parentes, le cas échéant)
 	 */
 	@Override
-	public Boolean caseProcess(simplepdl.Process object) {
-		// Contraintes sur process
-		this.result.recordIfFailed(
-				object.getName() != null && object.getName().matches(IDENT_REGEX), 
-				object, 
-				"Le nom du process ne respecte pas les conventions Java");
-		
-		// Visite
-		for (ProcessElement pe : object.getProcessElements()) {
-			this.doSwitch(pe);
-		}
-		
-		return null;
+	public Boolean caseProcess(simplepdl.Process process) {
+	    // … vos validations Process existantes …
+
+	    // 1. Récupérer *toutes* les RessourceAllocation
+	    Map<Ressource, Integer> totalAlloc = new HashMap<>();
+	    process.getProcessElements().stream()
+	        // on ne garde que les WorkDefinition
+	        .filter(pe -> pe instanceof WorkDefinition)
+	        .map(pe -> (WorkDefinition) pe)
+	        // pour chacune, on parcourt ses allocations
+	        .flatMap(wd -> wd.getResourceUsages().stream())
+	        .forEach(alloc -> {
+	            Ressource r = alloc.getRessource();
+	            int sum = totalAlloc.getOrDefault(r, 0) + alloc.getQuantity();
+	            totalAlloc.put(r, sum);
+	        });
+
+	    // 2. Reporter une erreur si somme > capacité
+	    totalAlloc.forEach((r, sum) -> {
+	        if (sum > r.getQuantity()) {
+	            result.recordIfFailed(
+	                false,
+	                r,
+	                "La somme des allocations (" + sum + 
+	                ") dépasse la capacité disponible de la ressource \"" +
+	                r.getName() + "\" (" + r.getQuantity() + ")"
+	            );
+	        }
+	    });
+
+	    // 3. On poursuit toujours la visite des enfants
+	    for (ProcessElement pe : process.getProcessElements()) {
+	        this.doSwitch(pe);
+	    }
+	    return null;
 	}
+
 
 	/**
 	 * Méthode appelée lorsque l'objet visité est un ProcessElement (ou un sous type).
