@@ -3,21 +3,24 @@
  */
 package fr.n7.pDL1.impl;
 
+import fr.n7.pDL1.AllocationRessource;
 import fr.n7.pDL1.PDL1Package;
-import fr.n7.pDL1.Resource;
 import fr.n7.pDL1.WorkDefinition;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +31,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * </p>
  * <ul>
  *   <li>{@link fr.n7.pDL1.impl.WorkDefinitionImpl#getName <em>Name</em>}</li>
- *   <li>{@link fr.n7.pDL1.impl.WorkDefinitionImpl#getResources <em>Resources</em>}</li>
+ *   <li>{@link fr.n7.pDL1.impl.WorkDefinitionImpl#getNeeds <em>Needs</em>}</li>
  * </ul>
  *
  * @generated
@@ -56,14 +59,14 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getResources() <em>Resources</em>}' reference list.
+   * The cached value of the '{@link #getNeeds() <em>Needs</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getResources()
+   * @see #getNeeds()
    * @generated
    * @ordered
    */
-  protected EList<Resource> resources;
+  protected EList<AllocationRessource> needs;
 
   /**
    * <!-- begin-user-doc -->
@@ -117,13 +120,29 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
    * @generated
    */
   @Override
-  public EList<Resource> getResources()
+  public EList<AllocationRessource> getNeeds()
   {
-    if (resources == null)
+    if (needs == null)
     {
-      resources = new EObjectResolvingEList<Resource>(Resource.class, this, PDL1Package.WORK_DEFINITION__RESOURCES);
+      needs = new EObjectContainmentEList<AllocationRessource>(AllocationRessource.class, this, PDL1Package.WORK_DEFINITION__NEEDS);
     }
-    return resources;
+    return needs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case PDL1Package.WORK_DEFINITION__NEEDS:
+        return ((InternalEList<?>)getNeeds()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -138,8 +157,8 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
     {
       case PDL1Package.WORK_DEFINITION__NAME:
         return getName();
-      case PDL1Package.WORK_DEFINITION__RESOURCES:
-        return getResources();
+      case PDL1Package.WORK_DEFINITION__NEEDS:
+        return getNeeds();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -158,9 +177,9 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
       case PDL1Package.WORK_DEFINITION__NAME:
         setName((String)newValue);
         return;
-      case PDL1Package.WORK_DEFINITION__RESOURCES:
-        getResources().clear();
-        getResources().addAll((Collection<? extends Resource>)newValue);
+      case PDL1Package.WORK_DEFINITION__NEEDS:
+        getNeeds().clear();
+        getNeeds().addAll((Collection<? extends AllocationRessource>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -179,8 +198,8 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
       case PDL1Package.WORK_DEFINITION__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case PDL1Package.WORK_DEFINITION__RESOURCES:
-        getResources().clear();
+      case PDL1Package.WORK_DEFINITION__NEEDS:
+        getNeeds().clear();
         return;
     }
     super.eUnset(featureID);
@@ -198,8 +217,8 @@ public class WorkDefinitionImpl extends ProcessElementImpl implements WorkDefini
     {
       case PDL1Package.WORK_DEFINITION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case PDL1Package.WORK_DEFINITION__RESOURCES:
-        return resources != null && !resources.isEmpty();
+      case PDL1Package.WORK_DEFINITION__NEEDS:
+        return needs != null && !needs.isEmpty();
     }
     return super.eIsSet(featureID);
   }

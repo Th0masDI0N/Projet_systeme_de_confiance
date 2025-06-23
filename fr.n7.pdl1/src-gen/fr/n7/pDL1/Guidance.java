@@ -3,6 +3,7 @@
  */
 package fr.n7.pDL1;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,6 +15,7 @@ package fr.n7.pDL1;
  * </p>
  * <ul>
  *   <li>{@link fr.n7.pDL1.Guidance#getTexte <em>Texte</em>}</li>
+ *   <li>{@link fr.n7.pDL1.Guidance#getElements <em>Elements</em>}</li>
  * </ul>
  *
  * @see fr.n7.pDL1.PDL1Package#getGuidance()
@@ -43,5 +45,17 @@ public interface Guidance extends ProcessElement
    * @generated
    */
   void setTexte(String value);
+
+  /**
+   * Returns the value of the '<em><b>Elements</b></em>' reference list.
+   * The list contents are of type {@link fr.n7.pDL1.ProcessElement}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Elements</em>' reference list.
+   * @see fr.n7.pDL1.PDL1Package#getGuidance_Elements()
+   * @model
+   * @generated
+   */
+  EList<ProcessElement> getElements();
 
 } // Guidance

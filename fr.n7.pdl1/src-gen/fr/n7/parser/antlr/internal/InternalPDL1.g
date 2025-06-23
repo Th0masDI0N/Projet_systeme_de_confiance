@@ -173,11 +173,11 @@ ruleProcessElement returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getProcessElementAccess().getResourceParserRuleCall_3());
+			newCompositeNode(grammarAccess.getProcessElementAccess().getRessourceParserRuleCall_3());
 		}
-		this_Resource_3=ruleResource
+		this_Ressource_3=ruleRessource
 		{
-			$current = $this_Resource_3.current;
+			$current = $this_Ressource_3.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -222,24 +222,164 @@ ruleWorkDefinition returns [EObject current=null]
 			)
 		)
 		(
-			otherlv_2='uses'
-			{
-				newLeafNode(otherlv_2, grammarAccess.getWorkDefinitionAccess().getUsesKeyword_2_0());
-			}
 			(
 				(
 					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getWorkDefinitionRule());
-						}
+						newCompositeNode(grammarAccess.getWorkDefinitionAccess().getNeedsAllocationRessourceParserRuleCall_2_0_0());
 					}
-					otherlv_3=RULE_ID
+					lv_needs_2_0=ruleAllocationRessource
 					{
-						newLeafNode(otherlv_3, grammarAccess.getWorkDefinitionAccess().getResourcesResourceCrossReference_2_1_0());
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getWorkDefinitionRule());
+						}
+						add(
+							$current,
+							"needs",
+							lv_needs_2_0,
+							"fr.n7.PDL1.AllocationRessource");
+						afterParserOrEnumRuleCall();
 					}
 				)
 			)
+			(
+				otherlv_3=','
+				{
+					newLeafNode(otherlv_3, grammarAccess.getWorkDefinitionAccess().getCommaKeyword_2_1_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getWorkDefinitionAccess().getNeedsAllocationRessourceParserRuleCall_2_1_1_0());
+						}
+						lv_needs_4_0=ruleAllocationRessource
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getWorkDefinitionRule());
+							}
+							add(
+								$current,
+								"needs",
+								lv_needs_4_0,
+								"fr.n7.PDL1.AllocationRessource");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)*
 		)?
+	)
+;
+
+// Entry rule entryRuleAllocationRessource
+entryRuleAllocationRessource returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAllocationRessourceRule()); }
+	iv_ruleAllocationRessource=ruleAllocationRessource
+	{ $current=$iv_ruleAllocationRessource.current; }
+	EOF;
+
+// Rule AllocationRessource
+ruleAllocationRessource returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='need'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getAllocationRessourceAccess().getNeedKeyword_0());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAllocationRessourceRule());
+					}
+				}
+				otherlv_1=RULE_ID
+				{
+					newLeafNode(otherlv_1, grammarAccess.getAllocationRessourceAccess().getResourceRessourceCrossReference_1_0());
+				}
+			)
+		)
+		(
+			(
+				lv_nbRessource_2_0=RULE_INT
+				{
+					newLeafNode(lv_nbRessource_2_0, grammarAccess.getAllocationRessourceAccess().getNbRessourceINTTerminalRuleCall_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAllocationRessourceRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"nbRessource",
+						lv_nbRessource_2_0,
+						"org.eclipse.xtext.common.Terminals.INT");
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleRessource
+entryRuleRessource returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRessourceRule()); }
+	iv_ruleRessource=ruleRessource
+	{ $current=$iv_ruleRessource.current; }
+	EOF;
+
+// Rule Ressource
+ruleRessource returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='resource'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getRessourceAccess().getResourceKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getRessourceAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRessourceRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		(
+			(
+				lv_nbRessourceDisponible_2_0=RULE_INT
+				{
+					newLeafNode(lv_nbRessourceDisponible_2_0, grammarAccess.getRessourceAccess().getNbRessourceDisponibleINTTerminalRuleCall_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRessourceRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"nbRessourceDisponible",
+						lv_nbRessourceDisponible_2_0,
+						"org.eclipse.xtext.common.Terminals.INT");
+				}
+			)
+		)
 	)
 ;
 
@@ -357,47 +497,44 @@ ruleGuidance returns [EObject current=null]
 				}
 			)
 		)
-	)
-;
-
-// Entry rule entryRuleResource
-entryRuleResource returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getResourceRule()); }
-	iv_ruleResource=ruleResource
-	{ $current=$iv_ruleResource.current; }
-	EOF;
-
-// Rule Resource
-ruleResource returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		otherlv_0='resource'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getResourceAccess().getResourceKeyword_0());
-		}
 		(
+			otherlv_2='for'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getGuidanceAccess().getForKeyword_2_0());
+			}
 			(
-				lv_name_1_0=RULE_ID
-				{
-					newLeafNode(lv_name_1_0, grammarAccess.getResourceAccess().getNameIDTerminalRuleCall_1_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getResourceRule());
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getGuidanceRule());
+						}
 					}
-					setWithLastConsumed(
-						$current,
-						"name",
-						lv_name_1_0,
-						"org.eclipse.xtext.common.Terminals.ID");
-				}
+					otherlv_3=RULE_ID
+					{
+						newLeafNode(otherlv_3, grammarAccess.getGuidanceAccess().getElementsProcessElementCrossReference_2_1_0());
+					}
+				)
 			)
-		)
+			(
+				otherlv_4=','
+				{
+					newLeafNode(otherlv_4, grammarAccess.getGuidanceAccess().getCommaKeyword_2_2_0());
+				}
+				(
+					(
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getGuidanceRule());
+							}
+						}
+						otherlv_5=RULE_ID
+						{
+							newLeafNode(otherlv_5, grammarAccess.getGuidanceAccess().getElementsProcessElementCrossReference_2_2_1_0());
+						}
+					)
+				)
+			)*
+		)?
 	)
 ;
 

@@ -1,13 +1,17 @@
-process ex1 {
-	
-    resource Res1
-    resource Res2
-    
-    wd a uses Res1
-    wd b
-    wd c uses Res2
+process developpement {
+  resource Concepteur 3
+  resource Developpeur 4
 
-    ws s2s from a to b
-    ws f2f from b to c
+  wd Conception need Concepteur 2
+  wd RedactionDoc
+  wd Programmation need Developpeur 3
+  wd RedactionTests need Developpeur 1
 
+  ws s2s from Conception to RedactionDoc
+  ws f2f from Conception to RedactionDoc
+  ws f2s from Conception to Programmation
+  ws s2s from Conception to RedactionTests
+
+  note "Versionner le code" for Programmation
 }
+

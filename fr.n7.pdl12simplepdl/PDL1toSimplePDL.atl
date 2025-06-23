@@ -1,0 +1,70 @@
+-- @path SimplePDL=/fr.n7.simplePDL/SimplePDL.ecore
+-- @path PDL1=/fr.n7.pdl1/model/generated/PDL1.ecore
+-- ... l'en-tête est volontairement omis
+-- Note : XPDL = méta-modèle issu de Xtext       -- PDL1
+--        SPDL = méta-modèle SimplePDL            -- SimplePDL
+
+module PDL1toSimplePDL;                           -- AJOUT
+create OUT : SimplePDL from IN : PDL1;            -- MODIF
+
+-- Ce helper n'a pas de contexte. Il est d�fini au niveau du module.
+helper def: convertLinkType(x : XPDL!WorkSequenceType) : SPDL!WorkSequenceType =
+--    if x = #start2start then #s2s
+	if x = #start2start then #startToStart
+--    else if x = #start2finish then #s2f
+	else if x = #start2finish then #startToFinish
+    --else if x = #finish2start then #f2s
+	else if x = #finish2start then #finishToStart
+    --else #f2f
+	else #finishToStart
+    endif endif endif; -- pas de SinonSi en ATL
+
+rule XProc2SProc {
+    from xp : PDL1!Process
+    to   sp : SimplePDL!Process(
+        name            <- xp.name,
+        -- Ajouter les enfants, sinon les autres éléments créés seront orphelins !
+        processElements <- xp.processElements
+    )
+}
+
+rule XWD2SWD {
+    from xwd : PDL1!WorkDefinition
+    to   swd : SimplePDL!WorkDefinition(
+        name           <- xwd.name,
+        resourceUsages <- xwd.needs
+    )
+}
+
+rule XWS2SWS {
+    from xws : PDL1!WorkSequence
+    to   sws : SimplePDL!WorkSequence(
+            linkType <- thisModule.convertLinkType(xws.linkType), -- Appel à notre helper
+            predecessor <- xws.predecessor, -- Conversion/appel de règle implicite
+            successor <- xws.successor
+        )
+}
+
+rule XResource2SResource {
+    from    xres : PDL1!Ressource
+    to      sres : SimplePDL!Ressource(
+                name <- xres.name,
+                quantity <- xres.nbRessourceDisponible
+        )
+}
+
+rule XUsedRessource2SUseRessource {
+    from    xallocated : PDL1!AllocationRessource
+    to      sallocated : SimplePDL!RessourceAllocation(
+                quantity <- xallocated.nbRessource,
+                ressource <- xallocated.resource
+        )
+}
+
+rule XGuidance2SGuidance {
+    from    xguidance : PDL1!Guidance
+    to      sguidance : SimplePDL!Guidance(
+                text <- xguidance.texte
+        )
+}
+-- TODO : ajouter la gestion des ressources dans ce fichier (après avoir modifié le xtest de PDL1, selon prof)

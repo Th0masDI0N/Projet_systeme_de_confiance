@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<petrinet:PetriNet
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:petrinet="http://petrinet"
+    name="exemple2">
+
+  <!-- Place initiale (1 jeton) -->
+  <petriElements
+      xsi:type="petrinet:Place"
+      xmi:id="p1"
+      name="P1"
+      marking="1"
+      outgoing="a1" />
+
+  <!-- Transition unique -->
+  <petriElements
+      xsi:type="petrinet:Transition"
+      xmi:id="t1"
+      name="T"
+      incoming="a1"
+      outgoing="a2" />
+
+  <!-- Place finale (0 jeton) -->
+  <petriElements
+      xsi:type="petrinet:Place"
+      xmi:id="p2"
+      name="P2"
+      marking="0"
+      incoming="a2" />
+
+  <!-- Arc de P1 vers T -->
+  <petriElements
+      xsi:type="petrinet:Arc"
+      xmi:id="a1"
+      weight="1"
+      source="p1"
+      target="t1" />
+
+  <!-- Arc de T vers P2 -->
+  <petriElements
+      xsi:type="petrinet:Arc"
+      xmi:id="a2"
+      weight="1"
+      source="t1"
+      target="p2" />
+
+</petrinet:PetriNet>
+

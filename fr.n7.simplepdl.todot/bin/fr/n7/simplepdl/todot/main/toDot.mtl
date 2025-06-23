@@ -1,24 +1,56 @@
 [comment encoding = UTF-8 /]
-[module toDot('http://simplepdl')]
+[module toDot('http://simplepdl')/]
 
-[template public processToDot(aProcess : Process)]
+[import simplepdl/]
+
+[template public processToDot(p : simplepdl::Process)]
 [comment @main/]
-[file (aProcess.name + '.dot', false, 'UTF-8')]
-digraph "[aProcess.name/]" {
-    [for (wd : WorkDefinition | aProcess.getWDs())]
-        [for (ws : WorkSequence | wd.linksToPredecessors)]
-            "[wd.name/]" -> "[ws.predecessor.name/]" [label="[ws.linkType.toString()/]"];
-        [/for]
-        [for (ws : WorkSequence | wd.linksToSuccessors)]
-            "[wd.name/]" -> "[ws.successor.name/]" [label="[ws.linkType.toString()/]"];
-        [/for]
-    [/for]
+[file (p.name + '.dot', false, 'UTF-8')]
+
+digraph "[p.name/]" {
+  rankdir=LR;
+  concentrate=true;
+
+  // 1) tâches
+  ['node [shape=box];'/]
+[for (wd : simplepdl::WorkDefinition |
+       p.processElements->select(e | e.oclIsKindOf(simplepdl::WorkDefinition)).oclAsType(simplepdl::WorkDefinition))]
+  "[wd.name/]";
+[/for]
+
+  // 2) séquences de travail avec affichage du type et point-virgule
+[for (ws : simplepdl::WorkSequence |
+       p.processElements->select(e | e.oclIsKindOf(simplepdl::WorkSequence)).oclAsType(simplepdl::WorkSequence)
+         ->select(s | s.predecessor <> null and s.successor <> null))]
+  "[ws.predecessor.name/]" -> "[ws.successor.name/]" [label="type=[ws.linkType.name()/]"];
+[/for]
+
+  // 3) ressources
+  ['node [shape=ellipse];'/]
+[for (res : simplepdl::Ressource |
+       p.processElements->select(e | e.oclIsKindOf(simplepdl::Ressource)).oclAsType(simplepdl::Ressource))]
+  "[res.name/]" [label="[res.name/]\n(qty=[res.quantity/])"];
+[/for]
+
+  // 4) allocations de ressources
+[for (ra : simplepdl::RessourceAllocation |
+       p.processElements->select(e | e.oclIsKindOf(simplepdl::RessourceAllocation)).oclAsType(simplepdl::RessourceAllocation))]
+  "[ra.task.name/]" -> "[ra.ressource.name/]" [label="use=[ra.quantity/]" style=dashed];
+[/for]
+
+  // 5) guidance
+  ['node [shape=note];'/]
+[for (gd : simplepdl::Guidance |
+       p.processElements->select(e | e.oclIsKindOf(simplepdl::Guidance)).oclAsType(simplepdl::Guidance))]
+  "[gd.text/]";
+  [for (el : simplepdl::ProcessElement | gd.elements)]
+    [if (el.oclIsKindOf(simplepdl::WorkDefinition))]
+      "[gd.text/]" -> "[el.oclAsType(simplepdl::WorkDefinition).name/]" [style=dotted];
+    [/if]
+  [/for]
+[/for]
+
 }
+
 [/file]
 [/template]
-
-[query public getWDs(p: Process) : OrderedSet(WorkDefinition) =
-    p.processElements->select(e | e.oclIsTypeOf(WorkDefinition))
-    ->collect(e | e.oclAsType(WorkDefinition))
-    ->asOrderedSet()
-/]

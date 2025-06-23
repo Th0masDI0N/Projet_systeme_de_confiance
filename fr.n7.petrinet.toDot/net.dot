@@ -1,0 +1,15 @@
+
+digraph "net" {
+  rankdir=LR;
+
+  // 1) Places en cercles avec marquage
+  node [shape = circle];
+  "p1" 
+  // 2) Transitions en boîtes
+  node [shape = box];
+  "T1";
+
+  // 3) Arcs, pointillés si read-arc
+  "p1" -> "T1" 
+}
+

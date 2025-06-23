@@ -1,0 +1,25 @@
+
+digraph "PreparationGateau" {
+  rankdir=LR;
+  concentrate=true;
+
+  // 1) tâches
+  node [shape=box];
+  "PreparerIngredients";
+  "PrechaufferFour";
+  "CuireGateau";
+  "LaisserRefroidir";
+
+  // 2) séquences de travail avec affichage du type et point-virgule
+  "PreparerIngredients" -> "PrechaufferFour"   "PrechaufferFour" -> "CuireGateau"   "CuireGateau" -> "LaisserRefroidir" 
+  // 3) ressources
+  node [shape=ellipse];
+  "Four" 
+  // 4) allocations de ressources
+
+  // 5) guidance
+  node [shape=note];
+  "Ne pas ouvir la porte du four pendant la cuisson";
+      "Ne pas ouvir la porte du four pendant la cuisson" -> "CuireGateau" 
+}
+

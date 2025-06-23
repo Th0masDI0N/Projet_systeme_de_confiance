@@ -39,7 +39,8 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//Process:
 		//    'process' name=ID '{'
 		//        processElements+=ProcessElement*
-		//    '}';
+		//    '}'
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'process' name=ID '{'
@@ -74,13 +75,20 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cWorkDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cWorkSequenceParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cGuidanceParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cResourceParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cRessourceParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//ProcessElement:
-		//    WorkDefinition | WorkSequence | Guidance | Resource;
+		//      WorkDefinition
+		//    | WorkSequence
+		//    | Guidance
+		//    | Ressource
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//WorkDefinition | WorkSequence | Guidance | Resource
+		//  WorkDefinition
+		//| WorkSequence
+		//| Guidance
+		//| Ressource
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//WorkDefinition
@@ -92,8 +100,8 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//Guidance
 		public RuleCall getGuidanceParserRuleCall_2() { return cGuidanceParserRuleCall_2; }
 		
-		//Resource
-		public RuleCall getResourceParserRuleCall_3() { return cResourceParserRuleCall_3; }
+		//Ressource
+		public RuleCall getRessourceParserRuleCall_3() { return cRessourceParserRuleCall_3; }
 	}
 	public class WorkDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.n7.PDL1.WorkDefinition");
@@ -102,16 +110,25 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cUsesKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cResourcesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final CrossReference cResourcesResourceCrossReference_2_1_0 = (CrossReference)cResourcesAssignment_2_1.eContents().get(0);
-		private final RuleCall cResourcesResourceIDTerminalRuleCall_2_1_0_1 = (RuleCall)cResourcesResourceCrossReference_2_1_0.eContents().get(1);
+		private final Assignment cNeedsAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cNeedsAllocationRessourceParserRuleCall_2_0_0 = (RuleCall)cNeedsAssignment_2_0.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
+		private final Keyword cCommaKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cNeedsAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
+		private final RuleCall cNeedsAllocationRessourceParserRuleCall_2_1_1_0 = (RuleCall)cNeedsAssignment_2_1_1.eContents().get(0);
 		
 		//WorkDefinition:
-		//    'wd' name=ID ('uses' resources+=[Resource])?;
+		//    'wd' name=ID
+		//    ( needs+=AllocationRessource
+		//      ( ',' needs+=AllocationRessource )*
+		//    )?
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'wd' name=ID ('uses' resources+=[Resource])?
+		//'wd' name=ID
+		//( needs+=AllocationRessource
+		//  ( ',' needs+=AllocationRessource )*
+		//)?
 		public Group getGroup() { return cGroup; }
 		
 		//'wd'
@@ -123,20 +140,96 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-		//('uses' resources+=[Resource])?
+		//( needs+=AllocationRessource
+		//  ( ',' needs+=AllocationRessource )*
+		//)?
 		public Group getGroup_2() { return cGroup_2; }
 		
-		//'uses'
-		public Keyword getUsesKeyword_2_0() { return cUsesKeyword_2_0; }
+		//needs+=AllocationRessource
+		public Assignment getNeedsAssignment_2_0() { return cNeedsAssignment_2_0; }
 		
-		//resources+=[Resource]
-		public Assignment getResourcesAssignment_2_1() { return cResourcesAssignment_2_1; }
+		//AllocationRessource
+		public RuleCall getNeedsAllocationRessourceParserRuleCall_2_0_0() { return cNeedsAllocationRessourceParserRuleCall_2_0_0; }
 		
-		//[Resource]
-		public CrossReference getResourcesResourceCrossReference_2_1_0() { return cResourcesResourceCrossReference_2_1_0; }
+		//( ',' needs+=AllocationRessource )*
+		public Group getGroup_2_1() { return cGroup_2_1; }
+		
+		//','
+		public Keyword getCommaKeyword_2_1_0() { return cCommaKeyword_2_1_0; }
+		
+		//needs+=AllocationRessource
+		public Assignment getNeedsAssignment_2_1_1() { return cNeedsAssignment_2_1_1; }
+		
+		//AllocationRessource
+		public RuleCall getNeedsAllocationRessourceParserRuleCall_2_1_1_0() { return cNeedsAllocationRessourceParserRuleCall_2_1_1_0; }
+	}
+	public class AllocationRessourceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.n7.PDL1.AllocationRessource");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cNeedKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cResourceAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cResourceRessourceCrossReference_1_0 = (CrossReference)cResourceAssignment_1.eContents().get(0);
+		private final RuleCall cResourceRessourceIDTerminalRuleCall_1_0_1 = (RuleCall)cResourceRessourceCrossReference_1_0.eContents().get(1);
+		private final Assignment cNbRessourceAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNbRessourceINTTerminalRuleCall_2_0 = (RuleCall)cNbRessourceAssignment_2.eContents().get(0);
+		
+		//AllocationRessource:
+		//    'need' resource=[Ressource] nbRessource=INT
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'need' resource=[Ressource] nbRessource=INT
+		public Group getGroup() { return cGroup; }
+		
+		//'need'
+		public Keyword getNeedKeyword_0() { return cNeedKeyword_0; }
+		
+		//resource=[Ressource]
+		public Assignment getResourceAssignment_1() { return cResourceAssignment_1; }
+		
+		//[Ressource]
+		public CrossReference getResourceRessourceCrossReference_1_0() { return cResourceRessourceCrossReference_1_0; }
 		
 		//ID
-		public RuleCall getResourcesResourceIDTerminalRuleCall_2_1_0_1() { return cResourcesResourceIDTerminalRuleCall_2_1_0_1; }
+		public RuleCall getResourceRessourceIDTerminalRuleCall_1_0_1() { return cResourceRessourceIDTerminalRuleCall_1_0_1; }
+		
+		//nbRessource=INT
+		public Assignment getNbRessourceAssignment_2() { return cNbRessourceAssignment_2; }
+		
+		//INT
+		public RuleCall getNbRessourceINTTerminalRuleCall_2_0() { return cNbRessourceINTTerminalRuleCall_2_0; }
+	}
+	public class RessourceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.n7.PDL1.Ressource");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cResourceKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cNbRessourceDisponibleAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNbRessourceDisponibleINTTerminalRuleCall_2_0 = (RuleCall)cNbRessourceDisponibleAssignment_2.eContents().get(0);
+		
+		//Ressource:
+		//    'resource' name=ID nbRessourceDisponible=INT
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'resource' name=ID nbRessourceDisponible=INT
+		public Group getGroup() { return cGroup; }
+		
+		//'resource'
+		public Keyword getResourceKeyword_0() { return cResourceKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//nbRessourceDisponible=INT
+		public Assignment getNbRessourceDisponibleAssignment_2() { return cNbRessourceDisponibleAssignment_2; }
+		
+		//INT
+		public RuleCall getNbRessourceDisponibleINTTerminalRuleCall_2_0() { return cNbRessourceDisponibleINTTerminalRuleCall_2_0; }
 	}
 	public class WorkSequenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.n7.PDL1.WorkSequence");
@@ -155,13 +248,14 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		
 		//WorkSequence:
 		//    'ws' linkType=WorkSequenceType
-		//        'from' predecessor=[WorkDefinition]
-		//        'to' successor=[WorkDefinition];
+		//       'from' predecessor=[WorkDefinition]
+		//       'to'   successor=[WorkDefinition]
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'ws' linkType=WorkSequenceType
-		//    'from' predecessor=[WorkDefinition]
-		//    'to' successor=[WorkDefinition]
+		//   'from' predecessor=[WorkDefinition]
+		//   'to'   successor=[WorkDefinition]
 		public Group getGroup() { return cGroup; }
 		
 		//'ws'
@@ -203,12 +297,29 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cNoteKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cTexteAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cTexteSTRINGTerminalRuleCall_1_0 = (RuleCall)cTexteAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cForKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cElementsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final CrossReference cElementsProcessElementCrossReference_2_1_0 = (CrossReference)cElementsAssignment_2_1.eContents().get(0);
+		private final RuleCall cElementsProcessElementIDTerminalRuleCall_2_1_0_1 = (RuleCall)cElementsProcessElementCrossReference_2_1_0.eContents().get(1);
+		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
+		private final Keyword cCommaKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
+		private final Assignment cElementsAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final CrossReference cElementsProcessElementCrossReference_2_2_1_0 = (CrossReference)cElementsAssignment_2_2_1.eContents().get(0);
+		private final RuleCall cElementsProcessElementIDTerminalRuleCall_2_2_1_0_1 = (RuleCall)cElementsProcessElementCrossReference_2_2_1_0.eContents().get(1);
 		
 		//Guidance:
-		//    'note' texte=STRING;
+		//    'note' texte=STRING
+		//    ( 'for' elements+=[ProcessElement]
+		//        ( ',' elements+=[ProcessElement] )*
+		//    )?
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'note' texte=STRING
+		//( 'for' elements+=[ProcessElement]
+		//    ( ',' elements+=[ProcessElement] )*
+		//)?
 		public Group getGroup() { return cGroup; }
 		
 		//'note'
@@ -219,29 +330,38 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		
 		//STRING
 		public RuleCall getTexteSTRINGTerminalRuleCall_1_0() { return cTexteSTRINGTerminalRuleCall_1_0; }
-	}
-	public class ResourceElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.n7.PDL1.Resource");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cResourceKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
-		//Resource:
-		//    'resource' name=ID;
-		@Override public ParserRule getRule() { return rule; }
+		//( 'for' elements+=[ProcessElement]
+		//    ( ',' elements+=[ProcessElement] )*
+		//)?
+		public Group getGroup_2() { return cGroup_2; }
 		
-		//'resource' name=ID
-		public Group getGroup() { return cGroup; }
+		//'for'
+		public Keyword getForKeyword_2_0() { return cForKeyword_2_0; }
 		
-		//'resource'
-		public Keyword getResourceKeyword_0() { return cResourceKeyword_0; }
+		//elements+=[ProcessElement]
+		public Assignment getElementsAssignment_2_1() { return cElementsAssignment_2_1; }
 		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		//[ProcessElement]
+		public CrossReference getElementsProcessElementCrossReference_2_1_0() { return cElementsProcessElementCrossReference_2_1_0; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getElementsProcessElementIDTerminalRuleCall_2_1_0_1() { return cElementsProcessElementIDTerminalRuleCall_2_1_0_1; }
+		
+		//( ',' elements+=[ProcessElement] )*
+		public Group getGroup_2_2() { return cGroup_2_2; }
+		
+		//','
+		public Keyword getCommaKeyword_2_2_0() { return cCommaKeyword_2_2_0; }
+		
+		//elements+=[ProcessElement]
+		public Assignment getElementsAssignment_2_2_1() { return cElementsAssignment_2_2_1; }
+		
+		//[ProcessElement]
+		public CrossReference getElementsProcessElementCrossReference_2_2_1_0() { return cElementsProcessElementCrossReference_2_2_1_0; }
+		
+		//ID
+		public RuleCall getElementsProcessElementIDTerminalRuleCall_2_2_1_0_1() { return cElementsProcessElementIDTerminalRuleCall_2_2_1_0_1; }
 	}
 	
 	public class WorkSequenceTypeElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
@@ -257,37 +377,38 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cFinish2finishF2fKeyword_3_0 = (Keyword)cFinish2finishEnumLiteralDeclaration_3.eContents().get(0);
 		
 		//enum WorkSequenceType:
-		//    start2start='s2s'
-		//    | finish2start='f2s'
-		//    | start2finish='s2f'
-		//    | finish2finish='f2f';
+		//    start2start    = 's2s'
+		//  | finish2start   = 'f2s'
+		//  | start2finish  = 's2f'
+		//  | finish2finish = 'f2f'
+		//;
 		public EnumRule getRule() { return rule; }
 		
-		//start2start='s2s'
-		//| finish2start='f2s'
-		//| start2finish='s2f'
-		//| finish2finish='f2f'
+		//  start2start    = 's2s'
+		//| finish2start   = 'f2s'
+		//| start2finish  = 's2f'
+		//| finish2finish = 'f2f'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//start2start='s2s'
+		//start2start    = 's2s'
 		public EnumLiteralDeclaration getStart2startEnumLiteralDeclaration_0() { return cStart2startEnumLiteralDeclaration_0; }
 		
 		//'s2s'
 		public Keyword getStart2startS2sKeyword_0_0() { return cStart2startS2sKeyword_0_0; }
 		
-		//finish2start='f2s'
+		//finish2start   = 'f2s'
 		public EnumLiteralDeclaration getFinish2startEnumLiteralDeclaration_1() { return cFinish2startEnumLiteralDeclaration_1; }
 		
 		//'f2s'
 		public Keyword getFinish2startF2sKeyword_1_0() { return cFinish2startF2sKeyword_1_0; }
 		
-		//start2finish='s2f'
+		//start2finish  = 's2f'
 		public EnumLiteralDeclaration getStart2finishEnumLiteralDeclaration_2() { return cStart2finishEnumLiteralDeclaration_2; }
 		
 		//'s2f'
 		public Keyword getStart2finishS2fKeyword_2_0() { return cStart2finishS2fKeyword_2_0; }
 		
-		//finish2finish='f2f'
+		//finish2finish = 'f2f'
 		public EnumLiteralDeclaration getFinish2finishEnumLiteralDeclaration_3() { return cFinish2finishEnumLiteralDeclaration_3; }
 		
 		//'f2f'
@@ -297,10 +418,11 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	private final ProcessElements pProcess;
 	private final ProcessElementElements pProcessElement;
 	private final WorkDefinitionElements pWorkDefinition;
+	private final AllocationRessourceElements pAllocationRessource;
+	private final RessourceElements pRessource;
 	private final WorkSequenceElements pWorkSequence;
 	private final GuidanceElements pGuidance;
 	private final WorkSequenceTypeElements eWorkSequenceType;
-	private final ResourceElements pResource;
 	
 	private final Grammar grammar;
 	
@@ -314,10 +436,11 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		this.pProcess = new ProcessElements();
 		this.pProcessElement = new ProcessElementElements();
 		this.pWorkDefinition = new WorkDefinitionElements();
+		this.pAllocationRessource = new AllocationRessourceElements();
+		this.pRessource = new RessourceElements();
 		this.pWorkSequence = new WorkSequenceElements();
 		this.pGuidance = new GuidanceElements();
 		this.eWorkSequenceType = new WorkSequenceTypeElements();
-		this.pResource = new ResourceElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -350,7 +473,8 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	//Process:
 	//    'process' name=ID '{'
 	//        processElements+=ProcessElement*
-	//    '}';
+	//    '}'
+	//;
 	public ProcessElements getProcessAccess() {
 		return pProcess;
 	}
@@ -360,7 +484,11 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//ProcessElement:
-	//    WorkDefinition | WorkSequence | Guidance | Resource;
+	//      WorkDefinition
+	//    | WorkSequence
+	//    | Guidance
+	//    | Ressource
+	//;
 	public ProcessElementElements getProcessElementAccess() {
 		return pProcessElement;
 	}
@@ -370,7 +498,11 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//WorkDefinition:
-	//    'wd' name=ID ('uses' resources+=[Resource])?;
+	//    'wd' name=ID
+	//    ( needs+=AllocationRessource
+	//      ( ',' needs+=AllocationRessource )*
+	//    )?
+	//;
 	public WorkDefinitionElements getWorkDefinitionAccess() {
 		return pWorkDefinition;
 	}
@@ -379,10 +511,33 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getWorkDefinitionAccess().getRule();
 	}
 	
+	//AllocationRessource:
+	//    'need' resource=[Ressource] nbRessource=INT
+	//;
+	public AllocationRessourceElements getAllocationRessourceAccess() {
+		return pAllocationRessource;
+	}
+	
+	public ParserRule getAllocationRessourceRule() {
+		return getAllocationRessourceAccess().getRule();
+	}
+	
+	//Ressource:
+	//    'resource' name=ID nbRessourceDisponible=INT
+	//;
+	public RessourceElements getRessourceAccess() {
+		return pRessource;
+	}
+	
+	public ParserRule getRessourceRule() {
+		return getRessourceAccess().getRule();
+	}
+	
 	//WorkSequence:
 	//    'ws' linkType=WorkSequenceType
-	//        'from' predecessor=[WorkDefinition]
-	//        'to' successor=[WorkDefinition];
+	//       'from' predecessor=[WorkDefinition]
+	//       'to'   successor=[WorkDefinition]
+	//;
 	public WorkSequenceElements getWorkSequenceAccess() {
 		return pWorkSequence;
 	}
@@ -392,7 +547,11 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Guidance:
-	//    'note' texte=STRING;
+	//    'note' texte=STRING
+	//    ( 'for' elements+=[ProcessElement]
+	//        ( ',' elements+=[ProcessElement] )*
+	//    )?
+	//;
 	public GuidanceElements getGuidanceAccess() {
 		return pGuidance;
 	}
@@ -402,26 +561,17 @@ public class PDL1GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//enum WorkSequenceType:
-	//    start2start='s2s'
-	//    | finish2start='f2s'
-	//    | start2finish='s2f'
-	//    | finish2finish='f2f';
+	//    start2start    = 's2s'
+	//  | finish2start   = 'f2s'
+	//  | start2finish  = 's2f'
+	//  | finish2finish = 'f2f'
+	//;
 	public WorkSequenceTypeElements getWorkSequenceTypeAccess() {
 		return eWorkSequenceType;
 	}
 	
 	public EnumRule getWorkSequenceTypeRule() {
 		return getWorkSequenceTypeAccess().getRule();
-	}
-	
-	//Resource:
-	//    'resource' name=ID;
-	public ResourceElements getResourceAccess() {
-		return pResource;
-	}
-	
-	public ParserRule getResourceRule() {
-		return getResourceAccess().getRule();
 	}
 	
 	//terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;

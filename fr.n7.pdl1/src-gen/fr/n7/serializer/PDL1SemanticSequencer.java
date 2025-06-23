@@ -4,9 +4,10 @@
 package fr.n7.serializer;
 
 import com.google.inject.Inject;
+import fr.n7.pDL1.AllocationRessource;
 import fr.n7.pDL1.Guidance;
 import fr.n7.pDL1.PDL1Package;
-import fr.n7.pDL1.Resource;
+import fr.n7.pDL1.Ressource;
 import fr.n7.pDL1.WorkDefinition;
 import fr.n7.pDL1.WorkSequence;
 import fr.n7.services.PDL1GrammarAccess;
@@ -35,14 +36,17 @@ public class PDL1SemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == PDL1Package.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case PDL1Package.ALLOCATION_RESSOURCE:
+				sequence_AllocationRessource(context, (AllocationRessource) semanticObject); 
+				return; 
 			case PDL1Package.GUIDANCE:
 				sequence_Guidance(context, (Guidance) semanticObject); 
 				return; 
 			case PDL1Package.PROCESS:
 				sequence_Process(context, (fr.n7.pDL1.Process) semanticObject); 
 				return; 
-			case PDL1Package.RESOURCE:
-				sequence_Resource(context, (Resource) semanticObject); 
+			case PDL1Package.RESSOURCE:
+				sequence_Ressource(context, (Ressource) semanticObject); 
 				return; 
 			case PDL1Package.WORK_DEFINITION:
 				sequence_WorkDefinition(context, (WorkDefinition) semanticObject); 
@@ -58,21 +62,38 @@ public class PDL1SemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     AllocationRessource returns AllocationRessource
+	 *
+	 * Constraint:
+	 *     (resource=[Ressource|ID] nbRessource=INT)
+	 * </pre>
+	 */
+	protected void sequence_AllocationRessource(ISerializationContext context, AllocationRessource semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, PDL1Package.Literals.ALLOCATION_RESSOURCE__RESOURCE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PDL1Package.Literals.ALLOCATION_RESSOURCE__RESOURCE));
+			if (transientValues.isValueTransient(semanticObject, PDL1Package.Literals.ALLOCATION_RESSOURCE__NB_RESSOURCE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PDL1Package.Literals.ALLOCATION_RESSOURCE__NB_RESSOURCE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAllocationRessourceAccess().getResourceRessourceIDTerminalRuleCall_1_0_1(), semanticObject.eGet(PDL1Package.Literals.ALLOCATION_RESSOURCE__RESOURCE, false));
+		feeder.accept(grammarAccess.getAllocationRessourceAccess().getNbRessourceINTTerminalRuleCall_2_0(), semanticObject.getNbRessource());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     ProcessElement returns Guidance
 	 *     Guidance returns Guidance
 	 *
 	 * Constraint:
-	 *     texte=STRING
+	 *     (texte=STRING (elements+=[ProcessElement|ID] elements+=[ProcessElement|ID]*)?)
 	 * </pre>
 	 */
 	protected void sequence_Guidance(ISerializationContext context, Guidance semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, PDL1Package.Literals.GUIDANCE__TEXTE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PDL1Package.Literals.GUIDANCE__TEXTE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getGuidanceAccess().getTexteSTRINGTerminalRuleCall_1_0(), semanticObject.getTexte());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -93,20 +114,23 @@ public class PDL1SemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     ProcessElement returns Resource
-	 *     Resource returns Resource
+	 *     ProcessElement returns Ressource
+	 *     Ressource returns Ressource
 	 *
 	 * Constraint:
-	 *     name=ID
+	 *     (name=ID nbRessourceDisponible=INT)
 	 * </pre>
 	 */
-	protected void sequence_Resource(ISerializationContext context, Resource semanticObject) {
+	protected void sequence_Ressource(ISerializationContext context, Ressource semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, PDL1Package.Literals.RESOURCE__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PDL1Package.Literals.RESOURCE__NAME));
+			if (transientValues.isValueTransient(semanticObject, PDL1Package.Literals.RESSOURCE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PDL1Package.Literals.RESSOURCE__NAME));
+			if (transientValues.isValueTransient(semanticObject, PDL1Package.Literals.RESSOURCE__NB_RESSOURCE_DISPONIBLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PDL1Package.Literals.RESSOURCE__NB_RESSOURCE_DISPONIBLE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getResourceAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getRessourceAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getRessourceAccess().getNbRessourceDisponibleINTTerminalRuleCall_2_0(), semanticObject.getNbRessourceDisponible());
 		feeder.finish();
 	}
 	
@@ -118,7 +142,7 @@ public class PDL1SemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     WorkDefinition returns WorkDefinition
 	 *
 	 * Constraint:
-	 *     (name=ID resources+=[Resource|ID]?)
+	 *     (name=ID (needs+=AllocationRessource needs+=AllocationRessource*)?)
 	 * </pre>
 	 */
 	protected void sequence_WorkDefinition(ISerializationContext context, WorkDefinition semanticObject) {

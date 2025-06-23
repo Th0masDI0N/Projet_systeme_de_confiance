@@ -1,0 +1,15 @@
+
+digraph "SimpleNet" {
+  rankdir=LR;
+
+  // 1) Places en cercles avec marquage
+  node [shape = circle];
+  "P1"   "P2" 
+  // 2) Transitions en boîtes
+  node [shape = box];
+  "T";
+
+  // 3) Arcs, pointillés si read-arc
+  "P1" -> "T"   "T" -> "P2" 
+}
+

@@ -18,6 +18,6 @@
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="fr.n7.simplepld.toHTML.main.ToHTML"/>
     <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="fr.n7.simplepld.toHTML"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="&quot;/home/n7student/2A/Matiere2merde/fr.n7.simplePDL/models/SimplePDLCreator_Created_Process.xmi&quot; &quot;/home/n7student/2A/Matiere2merde/fr.n7.simplepld.toHTML&quot;"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="&quot;/home/n7student/2A/SystemeDeConfiance/fr.n7.simplePDL/models/SimplePDLCreator_Created_Process.xmi&quot; &quot;/home/n7student/2A/SystemeDeConfiance/fr.n7.simplepld.toHTML&quot;"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="fr.n7.simplepld.toHTML"/>
 </launchConfiguration>

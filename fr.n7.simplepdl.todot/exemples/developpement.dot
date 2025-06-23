@@ -1,0 +1,25 @@
+
+digraph "developpement" {
+  rankdir=LR;
+  concentrate=true;
+
+  // 1) tâches
+  node [shape=box];
+  "Conception";
+  "RedactionDoc";
+  "Programmation";
+  "RedactionTests";
+
+  // 2) séquences de travail avec affichage du type et point-virgule
+  "Conception" -> "RedactionDoc"   "Conception" -> "RedactionDoc"   "Conception" -> "Programmation"   "Conception" -> "RedactionTests" 
+  // 3) ressources
+  node [shape=ellipse];
+
+  // 4) allocations de ressources
+
+  // 5) guidance
+  node [shape=note];
+  "A guidance";
+      "A guidance" -> "Conception"       "A guidance" -> "RedactionTests" 
+}
+

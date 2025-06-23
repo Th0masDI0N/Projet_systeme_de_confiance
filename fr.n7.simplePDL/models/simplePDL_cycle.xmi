@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMI xmi:version="2.0"
+     xmlns:xmi="http://www.omg.org/XMI"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:simplepdl="http://simplepdl">
+
+  <!-- Processus principal -->
+  <simplepdl:Process xmi:id="process1">
+    <name>ProcCycle</name>
+
+    <!-- 1. Trois tâches valides -->
+    <processElements xsi:type="simplepdl:WorkDefinition" xmi:id="wdA">
+      <name>A</name>
+    </processElements>
+    <processElements xsi:type="simplepdl:WorkDefinition" xmi:id="wdB">
+      <name>B</name>
+    </processElements>
+    <processElements xsi:type="simplepdl:WorkDefinition" xmi:id="wdC">
+      <name>C</name>
+    </processElements>
+
+    <!-- 2. Séquences formant un cycle A → B → C → A -->
+    <processElements xsi:type="simplepdl:WorkSequence" xmi:id="wsAB">
+      <linkType>finishToStart</linkType>
+      <predecessor xmi:idref="wdA"/>
+      <successor   xmi:idref="wdB"/>
+    </processElements>
+    <processElements xsi:type="simplepdl:WorkSequence" xmi:id="wsBC">
+      <linkType>finishToStart</linkType>
+      <predecessor xmi:idref="wdB"/>
+      <successor   xmi:idref="wdC"/>
+    </processElements>
+    <processElements xsi:type="simplepdl:WorkSequence" xmi:id="wsCA">
+      <linkType>finishToStart</linkType>
+      <predecessor xmi:idref="wdC"/>
+      <successor   xmi:idref="wdA"/>
+    </processElements>
+
+    <!-- 3. Une ressource et ses allocations, valides -->
+    <processElements xsi:type="simplepdl:Ressource" xmi:id="r1">
+      <name>Res1</name>
+      <quantity>2</quantity>
+    </processElements>
+
+    <!-- Allocation sur D -->
+    <processElements xsi:type="simplepdl:WorkDefinition" xmi:id="wdD">
+      <name>D</name>
+      <resourceUsages xsi:type="simplepdl:RessourceAllocation"
+                      xmi:id="ra1"
+                      quantity="1"
+                      ressource="r1"
+                      task="wdD"/>
+    </processElements>
+
+    <!-- Allocation sur E -->
+    <processElements xsi:type="simplepdl:WorkDefinition" xmi:id="wdE">
+      <name>E</name>
+      <resourceUsages xsi:type="simplepdl:RessourceAllocation"
+                      xmi:id="ra2"
+                      quantity="1"
+                      ressource="r1"
+                      task="wdE"/>
+    </processElements>
+
+    <!-- 4. Guidance valide (référence à A) -->
+    <processElements xsi:type="simplepdl:Guidance" xmi:id="g1">
+      <text>Bien documenté.</text>
+      <elements xmi:idref="wdA"/>
+    </processElements>
+
+  </simplepdl:Process>
+</XMI>
+

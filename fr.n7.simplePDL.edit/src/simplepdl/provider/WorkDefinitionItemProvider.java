@@ -48,11 +48,33 @@ public class WorkDefinitionItemProvider extends ProcessElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
 			addLinksToPredecessorsPropertyDescriptor(object);
 			addLinksToSuccessorsPropertyDescriptor(object);
-			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_WorkDefinition_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_WorkDefinition_name_feature", "_UI_WorkDefinition_type"),
+				 SimplepdlPackage.Literals.WORK_DEFINITION__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -100,28 +122,6 @@ public class WorkDefinitionItemProvider extends ProcessElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_WorkDefinition_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_WorkDefinition_name_feature", "_UI_WorkDefinition_type"),
-				 SimplepdlPackage.Literals.WORK_DEFINITION__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -133,7 +133,7 @@ public class WorkDefinitionItemProvider extends ProcessElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SimplepdlPackage.Literals.WORK_DEFINITION__NEED);
+			childrenFeatures.add(SimplepdlPackage.Literals.WORK_DEFINITION__RESOURCE_USAGES);
 		}
 		return childrenFeatures;
 	}
@@ -192,7 +192,7 @@ public class WorkDefinitionItemProvider extends ProcessElementItemProvider {
 			case SimplepdlPackage.WORK_DEFINITION__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case SimplepdlPackage.WORK_DEFINITION__NEED:
+			case SimplepdlPackage.WORK_DEFINITION__RESOURCE_USAGES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -212,8 +212,8 @@ public class WorkDefinitionItemProvider extends ProcessElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SimplepdlPackage.Literals.WORK_DEFINITION__NEED,
-				 SimplepdlFactory.eINSTANCE.createNeed()));
+				(SimplepdlPackage.Literals.WORK_DEFINITION__RESOURCE_USAGES,
+				 SimplepdlFactory.eINSTANCE.createRessourceAllocation()));
 	}
 
 }

@@ -13,6 +13,6 @@
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="simplepdl.validation.ValidateSimplepdl"/>
     <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="fr.n7.simplePDL"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="${models}"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="${simplepdl_cycle}"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="fr.n7.simplePDL"/>
 </launchConfiguration>

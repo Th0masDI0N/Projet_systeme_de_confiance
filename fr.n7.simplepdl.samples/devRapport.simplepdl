@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simplepdl:Process 
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:simplepdl="http://simplepdl"
+    name="RédactionRapport">
+
+  <!-- Ressources -->
+  <processElements xsi:type="simplepdl:Ressource" name="Analyste" quantity="1"/>
+  <processElements xsi:type="simplepdl:Ressource" name="Rédacteur" quantity="1"/>
+  <processElements xsi:type="simplepdl:Ressource" name="Relecteur" quantity="1"/>
+
+  <!-- Définitions de tâches -->
+  <processElements xsi:type="simplepdl:WorkDefinition" name="CollecteInformations">
+    <resourceUsages ressource="//@processElements.0" quantity="1"/>
+  </processElements>
+
+  <processElements xsi:type="simplepdl:WorkDefinition" name="AnalyseDonnées">
+    <resourceUsages ressource="//@processElements.0" quantity="1"/>
+  </processElements>
+
+  <processElements xsi:type="simplepdl:WorkDefinition" name="RédactionRapport">
+    <resourceUsages ressource="//@processElements.1" quantity="1"/>
+  </processElements>
+
+  <processElements xsi:type="simplepdl:WorkDefinition" name="Relecture">
+    <resourceUsages ressource="//@processElements.2" quantity="1"/>
+  </processElements>
+
+  <!-- Séquencement des tâches -->
+  <processElements xsi:type="simplepdl:WorkSequence"
+      linkType="finishToStart"
+      predecessor="//@processElements.3"
+      successor="//@processElements.4"/>
+
+  <processElements xsi:type="simplepdl:WorkSequence"
+      linkType="finishToStart"
+      predecessor="//@processElements.4"
+      successor="//@processElements.5"/>
+
+  <processElements xsi:type="simplepdl:WorkSequence"
+      linkType="finishToStart"
+      predecessor="//@processElements.5"
+      successor="//@processElements.6"/>
+
+  <!-- Guidance -->
+  <processElements xsi:type="simplepdl:Guidance"
+      text="Vérifier la cohérence des données avant analyse."
+      elements="//@processElements.4"/>
+
+  <processElements xsi:type="simplepdl:Guidance"
+      text="Utiliser le plan type de l'entreprise."
+      elements="//@processElements.5 //@processElements.6"/>
+
+</simplepdl:Process>

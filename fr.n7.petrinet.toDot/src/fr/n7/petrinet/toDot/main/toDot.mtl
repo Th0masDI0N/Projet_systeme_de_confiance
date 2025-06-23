@@ -1,0 +1,31 @@
+[comment encoding = UTF-8 /]
+[module toDot('http://petrinet')/]
+
+[template public petrinetToDot(net : PetriNet)]
+[comment @main/]
+[file (net.name + '.dot', false, 'UTF-8')]
+
+digraph "[net.name/]" {
+  rankdir=LR;
+
+  // 1) Places en cercles avec marquage
+  ['node [shape = circle];'/]
+[for (pl : Place | net.petriElements->select(e | e.oclIsKindOf(Place)).oclAsType(Place))]
+  "[pl.name/]" [label = "mark=[pl.marking/]"];
+[/for]
+
+  // 2) Transitions en boîtes
+  ['node [shape = box];'/]
+[for (tr : Transition | net.petriElements->select(e | e.oclIsKindOf(Transition)).oclAsType(Transition))]
+  "[tr.name/]";
+[/for]
+
+  // 3) Arcs, pointillés si read-arc
+[for (ar : Arc | net.petriElements->select(e | e.oclIsKindOf(Arc)).oclAsType(Arc))]
+  "[ar.source.name/]" -> "[ar.target.name/]" [label = "w=[ar.weight/]"] [if (ar.isReadArc)] [style = dashed] [/if];
+[/for]
+
+}
+
+[/file]
+[/template]

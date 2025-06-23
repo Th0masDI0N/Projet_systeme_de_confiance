@@ -51,6 +51,24 @@ public interface PDL1Factory extends EFactory
   WorkDefinition createWorkDefinition();
 
   /**
+   * Returns a new object of class '<em>Allocation Ressource</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Allocation Ressource</em>'.
+   * @generated
+   */
+  AllocationRessource createAllocationRessource();
+
+  /**
+   * Returns a new object of class '<em>Ressource</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Ressource</em>'.
+   * @generated
+   */
+  Ressource createRessource();
+
+  /**
    * Returns a new object of class '<em>Work Sequence</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -67,15 +85,6 @@ public interface PDL1Factory extends EFactory
    * @generated
    */
   Guidance createGuidance();
-
-  /**
-   * Returns a new object of class '<em>Resource</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Resource</em>'.
-   * @generated
-   */
-  Resource createResource();
 
   /**
    * Returns the package supported by this factory.

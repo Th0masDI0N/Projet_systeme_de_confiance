@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<simplepdl:Process xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:simplepdl="http://simplepdl" name="developpement">
+  <processElements xsi:type="simplepdl:Ressource" name="Concepteur" quantity="3"/>
+  <processElements xsi:type="simplepdl:Ressource" name="Developpeur" quantity="4"/>
+  <processElements xsi:type="simplepdl:WorkDefinition" name="Conception" linksToSuccessors="//@processElements.6 //@processElements.7 //@processElements.8 //@processElements.9">
+    <resourceUsages ressource="//@processElements.0" quantity="2"/>
+  </processElements>
+  <processElements xsi:type="simplepdl:WorkDefinition" name="RedactionDoc" linksToPredecessors="//@processElements.6 //@processElements.7"/>
+  <processElements xsi:type="simplepdl:WorkDefinition" name="Programmation" linksToPredecessors="//@processElements.8">
+    <resourceUsages ressource="//@processElements.1" quantity="3"/>
+  </processElements>
+  <processElements xsi:type="simplepdl:WorkDefinition" name="RedactionTests" linksToPredecessors="//@processElements.9">
+    <resourceUsages ressource="//@processElements.1" quantity="1"/>
+  </processElements>
+  <processElements xsi:type="simplepdl:WorkSequence" linkType="finishToStart" predecessor="//@processElements.2" successor="//@processElements.3"/>
+  <processElements xsi:type="simplepdl:WorkSequence" linkType="finishToStart" predecessor="//@processElements.2" successor="//@processElements.3"/>
+  <processElements xsi:type="simplepdl:WorkSequence" linkType="finishToStart" predecessor="//@processElements.2" successor="//@processElements.4"/>
+  <processElements xsi:type="simplepdl:WorkSequence" linkType="finishToStart" predecessor="//@processElements.2" successor="//@processElements.5"/>
+  <processElements xsi:type="simplepdl:Guidance" text="Versionner le code"/>
+</simplepdl:Process>

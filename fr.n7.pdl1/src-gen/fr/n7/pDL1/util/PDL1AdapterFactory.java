@@ -3,10 +3,11 @@
  */
 package fr.n7.pDL1.util;
 
+import fr.n7.pDL1.AllocationRessource;
 import fr.n7.pDL1.Guidance;
 import fr.n7.pDL1.PDL1Package;
 import fr.n7.pDL1.ProcessElement;
-import fr.n7.pDL1.Resource;
+import fr.n7.pDL1.Ressource;
 import fr.n7.pDL1.WorkDefinition;
 import fr.n7.pDL1.WorkSequence;
 
@@ -96,6 +97,16 @@ public class PDL1AdapterFactory extends AdapterFactoryImpl
         return createWorkDefinitionAdapter();
       }
       @Override
+      public Adapter caseAllocationRessource(AllocationRessource object)
+      {
+        return createAllocationRessourceAdapter();
+      }
+      @Override
+      public Adapter caseRessource(Ressource object)
+      {
+        return createRessourceAdapter();
+      }
+      @Override
       public Adapter caseWorkSequence(WorkSequence object)
       {
         return createWorkSequenceAdapter();
@@ -104,11 +115,6 @@ public class PDL1AdapterFactory extends AdapterFactoryImpl
       public Adapter caseGuidance(Guidance object)
       {
         return createGuidanceAdapter();
-      }
-      @Override
-      public Adapter caseResource(Resource object)
-      {
-        return createResourceAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -178,6 +184,36 @@ public class PDL1AdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link fr.n7.pDL1.AllocationRessource <em>Allocation Ressource</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see fr.n7.pDL1.AllocationRessource
+   * @generated
+   */
+  public Adapter createAllocationRessourceAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link fr.n7.pDL1.Ressource <em>Ressource</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see fr.n7.pDL1.Ressource
+   * @generated
+   */
+  public Adapter createRessourceAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link fr.n7.pDL1.WorkSequence <em>Work Sequence</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -203,21 +239,6 @@ public class PDL1AdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createGuidanceAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link fr.n7.pDL1.Resource <em>Resource</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see fr.n7.pDL1.Resource
-   * @generated
-   */
-  public Adapter createResourceAdapter()
   {
     return null;
   }

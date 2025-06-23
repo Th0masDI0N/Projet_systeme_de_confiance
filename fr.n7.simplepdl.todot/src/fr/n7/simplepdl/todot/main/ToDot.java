@@ -9,7 +9,6 @@
  *     Obeo - initial API and implementation
  *******************************************************************************/
 package fr.n7.simplepdl.todot.main;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import simplepdl.SimplepdlPackage;
-
+import fr.n7.petriNet.PetrinetPackage; 
 /**
  * Entry point of the 'ToDot' generation module.
  *

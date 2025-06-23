@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link fr.n7.pDL1.WorkDefinition#getName <em>Name</em>}</li>
- *   <li>{@link fr.n7.pDL1.WorkDefinition#getResources <em>Resources</em>}</li>
+ *   <li>{@link fr.n7.pDL1.WorkDefinition#getNeeds <em>Needs</em>}</li>
  * </ul>
  *
  * @see fr.n7.pDL1.PDL1Package#getWorkDefinition()
@@ -47,15 +47,15 @@ public interface WorkDefinition extends ProcessElement
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Resources</b></em>' reference list.
-   * The list contents are of type {@link fr.n7.pDL1.Resource}.
+   * Returns the value of the '<em><b>Needs</b></em>' containment reference list.
+   * The list contents are of type {@link fr.n7.pDL1.AllocationRessource}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Resources</em>' reference list.
-   * @see fr.n7.pDL1.PDL1Package#getWorkDefinition_Resources()
-   * @model
+   * @return the value of the '<em>Needs</em>' containment reference list.
+   * @see fr.n7.pDL1.PDL1Package#getWorkDefinition_Needs()
+   * @model containment="true"
    * @generated
    */
-  EList<Resource> getResources();
+  EList<AllocationRessource> getNeeds();
 
 } // WorkDefinition

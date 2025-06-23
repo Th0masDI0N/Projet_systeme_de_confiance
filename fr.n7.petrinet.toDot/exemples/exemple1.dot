@@ -1,0 +1,34 @@
+digraph "ComplexNet" {
+  rankdir=LR;
+
+  // 1) Places en cercles avec marquage
+  node [shape = circle];
+    "Start" [label = "mark=3"];
+    "BranchA" [label = "mark=0"];
+    "BranchB" [label = "mark=0"];
+    "Sync" [label = "mark=0"];
+    "End" [label = "mark=0"];
+
+  // 2) Transitions en boîtes
+  node [shape = box];
+    "Split";
+    "ProcessA";
+    "CheckB";
+    "Finalize";
+
+  // 3) Arcs normaux et pondérés
+    "Start" -> "Split"   [label = "w=3"];
+    "Split" -> "BranchA" [label = "w=2"];
+    "Split" -> "BranchB" [label = "w=1"];
+    "BranchA" -> "ProcessA" [label = "w=1"];
+  
+  // 4) Arcs de lecture (pointillés)
+    "BranchB" -> "CheckB" [label = "w=1" style = dashed];
+  
+  // 5) Synchronisation et finalisation
+    "ProcessA" -> "Sync"    [label = "w=1"];
+    "CheckB"   -> "Sync"    [label = "w=1" style = dashed];
+    "Sync"     -> "Finalize" [label = "w=2"];
+    "Finalize" -> "End"      [label = "w=1"];
+}
+

@@ -5,12 +5,19 @@ package fr.n7.pDL1.impl;
 
 import fr.n7.pDL1.Guidance;
 import fr.n7.pDL1.PDL1Package;
+import fr.n7.pDL1.ProcessElement;
+
+import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,6 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link fr.n7.pDL1.impl.GuidanceImpl#getTexte <em>Texte</em>}</li>
+ *   <li>{@link fr.n7.pDL1.impl.GuidanceImpl#getElements <em>Elements</em>}</li>
  * </ul>
  *
  * @generated
@@ -46,6 +54,16 @@ public class GuidanceImpl extends ProcessElementImpl implements Guidance
    * @ordered
    */
   protected String texte = TEXTE_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getElements() <em>Elements</em>}' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getElements()
+   * @generated
+   * @ordered
+   */
+  protected EList<ProcessElement> elements;
 
   /**
    * <!-- begin-user-doc -->
@@ -99,12 +117,29 @@ public class GuidanceImpl extends ProcessElementImpl implements Guidance
    * @generated
    */
   @Override
+  public EList<ProcessElement> getElements()
+  {
+    if (elements == null)
+    {
+      elements = new EObjectResolvingEList<ProcessElement>(ProcessElement.class, this, PDL1Package.GUIDANCE__ELEMENTS);
+    }
+    return elements;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case PDL1Package.GUIDANCE__TEXTE:
         return getTexte();
+      case PDL1Package.GUIDANCE__ELEMENTS:
+        return getElements();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -114,6 +149,7 @@ public class GuidanceImpl extends ProcessElementImpl implements Guidance
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -121,6 +157,10 @@ public class GuidanceImpl extends ProcessElementImpl implements Guidance
     {
       case PDL1Package.GUIDANCE__TEXTE:
         setTexte((String)newValue);
+        return;
+      case PDL1Package.GUIDANCE__ELEMENTS:
+        getElements().clear();
+        getElements().addAll((Collection<? extends ProcessElement>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -139,6 +179,9 @@ public class GuidanceImpl extends ProcessElementImpl implements Guidance
       case PDL1Package.GUIDANCE__TEXTE:
         setTexte(TEXTE_EDEFAULT);
         return;
+      case PDL1Package.GUIDANCE__ELEMENTS:
+        getElements().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -155,6 +198,8 @@ public class GuidanceImpl extends ProcessElementImpl implements Guidance
     {
       case PDL1Package.GUIDANCE__TEXTE:
         return TEXTE_EDEFAULT == null ? texte != null : !TEXTE_EDEFAULT.equals(texte);
+      case PDL1Package.GUIDANCE__ELEMENTS:
+        return elements != null && !elements.isEmpty();
     }
     return super.eIsSet(featureID);
   }

@@ -29,18 +29,25 @@ import petrinet.Transition;
 
 public class SimplePDL2PetriNetEMF {
 
-    public static Process loadProcess(String modelPath) {
-        // Enregistrer l'extension XMI dans le registre
-        Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
-            .put("xmi", new XMIResourceFactoryImpl());
-        // Enregistrer le package SimplePDL
-        ResourceSet rs = new ResourceSetImpl();
-        rs.getPackageRegistry().put(SimplepdlPackage.eNS_URI, SimplepdlPackage.eINSTANCE);
+	public static Process loadProcess(String modelPath) {
+	    // 1) enregistrer les factories XMI pour .simplepdl (et .xmi si besoin)
+	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
+	        .put("simplepdl", new XMIResourceFactoryImpl());
+	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
+	        .put("xmi",      new XMIResourceFactoryImpl());
 
-        // Charger le modèle
-        Resource r = rs.getResource(URI.createURI(modelPath), true);
-        return (Process) r.getContents().get(0);
-    }
+	    // 2) enregistrer le package SimplePDL
+	    ResourceSet rs = new ResourceSetImpl();
+	    rs.getPackageRegistry().put(
+	        SimplepdlPackage.eNS_URI, SimplepdlPackage.eINSTANCE);
+
+	    // 3) charger le modèle depuis un URI fichier
+	    Resource r = rs.getResource(
+	        URI.createFileURI(modelPath), true);
+
+	    return (Process) r.getContents().get(0);
+	}
+
 
     public static void generatePetriNet(Process process, String modelPath) {
         // Enregistrer le package PetriNet

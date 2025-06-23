@@ -3,11 +3,12 @@
  */
 package fr.n7.pDL1.impl;
 
+import fr.n7.pDL1.AllocationRessource;
 import fr.n7.pDL1.Guidance;
 import fr.n7.pDL1.PDL1Factory;
 import fr.n7.pDL1.PDL1Package;
 import fr.n7.pDL1.ProcessElement;
-import fr.n7.pDL1.Resource;
+import fr.n7.pDL1.Ressource;
 import fr.n7.pDL1.WorkDefinition;
 import fr.n7.pDL1.WorkSequence;
 import fr.n7.pDL1.WorkSequenceType;
@@ -76,9 +77,10 @@ public class PDL1FactoryImpl extends EFactoryImpl implements PDL1Factory
       case PDL1Package.PROCESS: return createProcess();
       case PDL1Package.PROCESS_ELEMENT: return createProcessElement();
       case PDL1Package.WORK_DEFINITION: return createWorkDefinition();
+      case PDL1Package.ALLOCATION_RESSOURCE: return createAllocationRessource();
+      case PDL1Package.RESSOURCE: return createRessource();
       case PDL1Package.WORK_SEQUENCE: return createWorkSequence();
       case PDL1Package.GUIDANCE: return createGuidance();
-      case PDL1Package.RESOURCE: return createResource();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -160,6 +162,30 @@ public class PDL1FactoryImpl extends EFactoryImpl implements PDL1Factory
    * @generated
    */
   @Override
+  public AllocationRessource createAllocationRessource()
+  {
+    AllocationRessourceImpl allocationRessource = new AllocationRessourceImpl();
+    return allocationRessource;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Ressource createRessource()
+  {
+    RessourceImpl ressource = new RessourceImpl();
+    return ressource;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public WorkSequence createWorkSequence()
   {
     WorkSequenceImpl workSequence = new WorkSequenceImpl();
@@ -176,18 +202,6 @@ public class PDL1FactoryImpl extends EFactoryImpl implements PDL1Factory
   {
     GuidanceImpl guidance = new GuidanceImpl();
     return guidance;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Resource createResource()
-  {
-    ResourceImpl resource = new ResourceImpl();
-    return resource;
   }
 
   /**
