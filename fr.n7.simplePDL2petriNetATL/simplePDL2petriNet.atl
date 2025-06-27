@@ -1,136 +1,134 @@
+-- chemins vers vos méta-modèles
 -- @path petrinet=/fr.n7.petriNet/PetriNet.ecore
 -- @path simplepdl=/fr.n7.simplePDL/SimplePDL.ecore
 
 module SimplePDL2PetriNet;
-create OUT: petrinet from IN: simplepdl;
+create OUT : petrinet from IN : simplepdl;
 
-
-
--- Obtenir le processus qui contient ce process element.
+-- helper pour retrouver la Process d’un élément
 helper context simplepdl!ProcessElement
-def: getProcess(): simplepdl!Process =
-	simplepdl!Process.allInstances()
-		->select(p | p.processElements->includes(self))
-		->asSequence()->first();
+def: getProcess() : simplepdl!Process =
+  simplepdl!Process.allInstances()
+    ->select(p | p.processElements->includes(self))
+    ->asSequence()->first();
 
-
--- Traduire un Process en un PetriNet de même nom
+-- 1) Traduire le Process en PetriNet
 rule Process2PetriNet {
-	from p: simplepdl!Process
-	to pn: petrinet!PetriNet (
-		name <- p.name
-	)
+  from
+    p : simplepdl!Process
+  to
+    pn : petrinet!PetriNet (
+      name <- p.name
+    )
 }
 
+-- 2) Chaque WorkDefinition devient 4 places + 2 transitions + arcs
 rule WorkDefinition2PetriNet {
-	from wd: simplepdl!WorkDefinition
-	to
-		p_ready: petrinet!Place(
-			name <- wd.name + '_ready',
-			marking <- 1,
-			petrinet <- wd.process
-		),
-		p_running: petrinet!Place(
-			name <- wd.name + '_running',
-			marking <- 0,
-			petrinet <- wd.process
-		),
-		p_started: petrinet!Place(
-			name <- wd.name + '_started',
-			marking <- 0,
-			petrinet <- wd.process
-		),
-		p_finished: petrinet!Place(
-			name <- wd.name + '_finished',
-			marking <- 0,
-			petrinet <- wd.process
-		),
-		t_start: petrinet!Transition(
-			name <- wd.name + '_start',
-			petrinet <- wd.process
-		),
-		t_finish: petrinet!Transition(
-			name <- wd.name + '_finish',
-			petrinet <- wd.process
-		),
-		a_ready2start: petrinet!Arc(
-			weight <- 1,
-			isReadArc <- false,
-			source <- p_ready,
-			target <- t_start,
-			petrinet <- wd.process
-		),
-		a_start2running: petrinet!Arc(
-			weight <- 1,
-			isReadArc <- false,
-			source <- t_start,
-			target <- p_running,
-			petrinet <- wd.process
-		),
-		a_start2started: petrinet!Arc(
-			weight <- 1,
-			isReadArc <- false,
-			source <- t_start,
-			target <- p_started,
-			petrinet <- wd.process
-		),
-		a_running2finish: petrinet!Arc(
-			weight <- 1,
-			isReadArc <- false,
-			source <- p_running,
-			target <- t_finish,
-			petrinet <- wd.process
-		),
-		a_finish2finished: petrinet!Arc(
-			weight <- 1,
-			isReadArc <- false,
-			source <- t_finish,
-			target <- p_finished,
-			petrinet <- wd.process
-		)
-	
+  from
+    wd : simplepdl!WorkDefinition
+  to
+    p_ready   : petrinet!Place      ( name <- wd.name + '_ready',
+                                        marking <- 1,
+                                        petrinet <- thisModule.resolveTemp(wd.getProcess(), 'pn') ),
+    p_running : petrinet!Place      ( name <- wd.name + '_running',
+                                        marking <- 0,
+                                        petrinet <- thisModule.resolveTemp(wd.getProcess(), 'pn') ),
+    p_started : petrinet!Place      ( name <- wd.name + '_started',
+                                        marking <- 0,
+                                        petrinet <- thisModule.resolveTemp(wd.getProcess(), 'pn') ),
+    p_finished: petrinet!Place      ( name <- wd.name + '_finished',
+                                        marking <- 0,
+                                        petrinet <- thisModule.resolveTemp(wd.getProcess(), 'pn') ),
+    t_start   : petrinet!Transition ( name <- wd.name + '_start',
+                                        petrinet <- thisModule.resolveTemp(wd.getProcess(), 'pn') ),
+    t_finish  : petrinet!Transition ( name <- wd.name + '_finish',
+                                        petrinet <- thisModule.resolveTemp(wd.getProcess(), 'pn') ),
+
+    -- arcs de progression
+    a_r2s     : petrinet!Arc        ( weight    <- 1,
+                                        isReadArc <- false,
+                                        source    <- p_ready,
+                                        target    <- t_start,
+                                        petrinet  <- thisModule.resolveTemp(wd.getProcess(), 'pn') ),
+    a_s2run   : petrinet!Arc        ( weight    <- 1,
+                                        isReadArc <- false,
+                                        source    <- t_start,
+                                        target    <- p_running,
+                                        petrinet  <- thisModule.resolveTemp(wd.getProcess(), 'pn') ),
+    a_s2st    : petrinet!Arc        ( weight    <- 1,
+                                        isReadArc <- false,
+                                        source    <- t_start,
+                                        target    <- p_started,
+                                        petrinet  <- thisModule.resolveTemp(wd.getProcess(), 'pn') ),
+    a_run2f   : petrinet!Arc        ( weight    <- 1,
+                                        isReadArc <- false,
+                                        source    <- p_running,
+                                        target    <- t_finish,
+                                        petrinet  <- thisModule.resolveTemp(wd.getProcess(), 'pn') ),
+    a_f2fin   : petrinet!Arc        ( weight    <- 1,
+                                        isReadArc <- false,
+                                        source    <- t_finish,
+                                        target    <- p_finished,
+                                        petrinet  <- thisModule.resolveTemp(wd.getProcess(), 'pn') )
 }
 
--- Traduire une WorkSequence en arc de contrôle (lecture)
+-- 3) Traduction des WorkSequence → arcs de contrôle (read-arcs)
 rule WorkSequence2PetriNet {
-	from ws: simplepdl!WorkSequence
-	to aws: petrinet!Arc(
-			weight <- 1,
-			isReadArc <- true,
-			source <- thisModule.resolveTemp(ws.predecessor, if(ws.linkType = #startToStart) or (ws.linkType = #startToFinish) then 'p_started' else 'p_finished' endif),
-			target <- thisModule.resolveTemp(ws.successor, if(ws.linkType = #startToStart) or (ws.linkType = #finishToStart) then 't_start' else 't_finish' endif),
-			petrinet <- ws.getProcess()
-	)
+  from
+    ws : simplepdl!WorkSequence
+  to
+    controlArc : petrinet!Arc (
+      weight    <- 1,
+      isReadArc <- true,
+      source    <- thisModule.resolveTemp(
+                     ws.predecessor,
+                     if ws.linkType = #startToStart or ws.linkType = #startToFinish then
+                       'p_started'
+                     else
+                       'p_finished'
+                     endif
+                   ),
+      target    <- thisModule.resolveTemp(
+                     ws.successor,
+                     if ws.linkType = #startToStart or ws.linkType = #finishToStart then
+                       't_start'
+                     else
+                       't_finish'
+                     endif
+                   ),
+      petrinet  <- thisModule.resolveTemp(ws.getProcess(), 'pn')
+    )
 }
 
--- Traduire une Ressource en un motif sur le réseau de petri
+-- 4) Ressource → Place ressource
 rule Resource2PetriNet {
-	from rs: simplepdl!Ressource
-	to prs: petrinet!Place(
-			name <- rs.name + '_resource',
-			marking <- rs.quantity,
-			petrinet <- rs.getProcess()
-	)
+  from
+    r : simplepdl!Ressource
+  to
+    prs : petrinet!Place (
+      name     <- r.name + '_resource',
+      marking  <- r.quantity,
+      petrinet <- thisModule.resolveTemp(r.getProcess(), 'pn')
+    )
 }
 
--- Traduire un Besoin en un motif sur le réseau de petri
--- Remarque: Need n'hérite pas de ProcessElements : en l'occurrence, on doit passer
--- par la Resource (ou la WorkDefinition) liée au Need pour récup le Process
+-- 5) Allocation → arcs de charge et de libération
 rule RessourceAllocation2PetriNet {
-	from ne: simplepdl!RessourceAllocation
-	to 
-		an_load: petrinet!Arc(
-				weight <- ne.quantity,
-				isReadArc <- false,
-				source <- ne.resource,
-				target <- thisModule.resolveTemp(ne.workdefinition, 't_start'),
-				petrinet <- ne.resource.getProcess()
-		),
-		an_release: petrinet!Arc(
-				weight <- ne.quantity,
-				isReadArc <- false,
-				source <- thisModule.resolveTemp(ne.workdefinition, 't_finish'),
-				target <- ne.resource,
-				petrinet <- ne.resource.getProcess()
-		)
+  from
+    alloc : simplepdl!RessourceAllocation
+  to
+    load  : petrinet!Arc (
+      weight    <- alloc.quantity,
+      isReadArc <- false,
+      source    <- thisModule.resolveTemp(alloc.ressource, 'prs'),
+      target    <- thisModule.resolveTemp(alloc.task, 't_start'),
+      petrinet  <- thisModule.resolveTemp(alloc.ressource.getProcess(), 'pn')
+    ),
+    release : petrinet!Arc (
+      weight    <- alloc.quantity,
+      isReadArc <- false,
+      source    <- thisModule.resolveTemp(alloc.task, 't_finish'),
+      target    <- thisModule.resolveTemp(alloc.ressource, 'prs'),
+      petrinet  <- thisModule.resolveTemp(alloc.ressource.getProcess(), 'pn')
+    )
 }

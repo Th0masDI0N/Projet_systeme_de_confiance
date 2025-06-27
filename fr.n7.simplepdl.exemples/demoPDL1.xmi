@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pDL1:Process
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:pDL1="http://www.n7.fr/PDL1"
+    name="demo">
+  <processElements
+      xsi:type="pDL1:WorkDefinition"
+      name="VenirAlHeur"/>
+  <processElements
+      xsi:type="pDL1:WorkDefinition"
+      name="Presenter">
+    <needs resource="//@processElements.3"
+        nbRessource="1"/>
+  </processElements>
+  <processElements
+      xsi:type="pDL1:WorkSequence"
+      linkType="f2s"
+      predecessor="//@processElements.0"
+      successor="//@processElements.1"/>
+  <processElements
+      xsi:type="pDL1:Ressource"
+      name="PC"
+      nbRessourceDisponible="1"/>
+</pDL1:Process>

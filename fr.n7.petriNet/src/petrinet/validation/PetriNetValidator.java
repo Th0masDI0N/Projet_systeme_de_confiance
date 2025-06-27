@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -15,6 +14,8 @@ import petrinet.PetriNet;
 import petrinet.Place;
 import petrinet.Transition;
 import petrinet.util.PetrinetSwitch;
+import petrinet.validation.ValidationResult;
+import petrinet.validation.ValidationResult.Entry;
 import petrinet.PetrinetPackage;
 
 /**
@@ -60,11 +61,11 @@ public class PetriNetValidator {
                 result.addError(net, "Le nom du PetriNet est vide");
             }
 
+            // Unicité des Node par nom
             List<Node> nodes = net.getPetriElements().stream()
                 .filter(e -> e instanceof Node)
-                .map(e -> (Node)e)
+                .map(e -> (Node) e)
                 .collect(Collectors.toList());
-            // Unicité des Node par nom
             Map<String, List<Node>> byName = nodes.stream()
                 .collect(Collectors.groupingBy(n -> n.getName()));
             byName.forEach((name, list) -> {
@@ -78,10 +79,10 @@ public class PetriNetValidator {
             // Arcs redondants
             List<Arc> arcs = net.getPetriElements().stream()
                 .filter(e -> e instanceof Arc)
-                .map(e -> (Arc)e)
+                .map(e -> (Arc) e)
                 .collect(Collectors.toList());
             Map<String, List<Arc>> byEndpoints = arcs.stream()
-                .collect(Collectors.groupingBy(a -> 
+                .collect(Collectors.groupingBy(a ->
                     a.getSource().getName() + "->" + a.getTarget().getName()));
             byEndpoints.forEach((key, list) -> {
                 if (list.size() > 1) {
@@ -90,7 +91,10 @@ public class PetriNetValidator {
                 }
             });
 
-            return super.casePetriNet(net);
+            // On descend explicitement dans chaque sous-élément
+            net.getPetriElements().forEach(e -> doSwitch((EObject) e));
+
+            return null;
         }
 
         @Override
@@ -104,7 +108,7 @@ public class PetriNetValidator {
             if (place.getName() == null || place.getName().trim().isEmpty()) {
                 result.addError(place, "Le nom du Node est vide");
             }
-            return super.casePlace(place);
+            return null;
         }
 
         @Override
@@ -113,7 +117,7 @@ public class PetriNetValidator {
             if (trans.getName() == null || trans.getName().trim().isEmpty()) {
                 result.addError(trans, "Le nom du Node est vide");
             }
-            return super.caseTransition(trans);
+            return null;
         }
 
         @Override
@@ -132,8 +136,8 @@ public class PetriNetValidator {
                     "L'Arc doit relier une Place et une Transition");
             }
             // Même PetriNet
-            if (((PetriElement)arc.getSource()).getPetrinet()
-                    != ((PetriElement)arc.getTarget()).getPetrinet()) {
+            if (((PetriElement) arc.getSource()).getPetrinet()
+                    != ((PetriElement) arc.getTarget()).getPetrinet()) {
                 result.addError(arc,
                     "La source et la destination de l'Arc ne sont pas dans le même PetriNet");
             }
@@ -142,8 +146,7 @@ public class PetriNetValidator {
                 result.addError(arc,
                     "Un Arc partant d'une Transition ne peut pas être un ReadArc");
             }
-
-            return super.caseArc(arc);
+            return null;
         }
     }
 }

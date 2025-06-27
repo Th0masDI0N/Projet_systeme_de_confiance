@@ -12,7 +12,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
+import petrinet.PetriNet;
 import petrinet.PetrinetPackage;
+import petrinet.Place;
 import petrinet.validation.ValidationResult.Entry;
 
 /**
@@ -77,11 +79,13 @@ public class ValidatePetriNet {
         for (String path : args) {
             URI uri = URI.createFileURI(path);
             Resource resource = resSet.getResource(uri, true);
+
             ValidationResult result = validator.validate(resource);
-            
+
             System.out.println("\n=== Validation de " + path + " ===");
             afficherResultat(result);
         }
+
         
         System.out.println("\nFini.");
     }

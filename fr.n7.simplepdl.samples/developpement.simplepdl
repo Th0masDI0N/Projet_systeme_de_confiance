@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <simplepdl:Process xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:simplepdl="http://simplepdl" name="developpement">
-  <processElements xsi:type="simplepdl:WorkDefinition" name="Conception" linksToSuccessors="//@processElements.4 //@processElements.5 //@processElements.6 //@processElements.7">
-    <resourceUsages quantity="2"/>
-    <resourceUsages ressource="//@processElements.8"/>
-  </processElements>
-  <processElements xsi:type="simplepdl:WorkDefinition" name="RedactionDoc" linksToPredecessors="//@processElements.4 //@processElements.5"/>
-  <processElements xsi:type="simplepdl:WorkDefinition" name="Programmation" linksToPredecessors="//@processElements.6">
-    <resourceUsages ressource="//@processElements.9" quantity="3"/>
-  </processElements>
-  <processElements xsi:type="simplepdl:WorkDefinition" name="RedactionTests" linksToPredecessors="//@processElements.7">
-    <resourceUsages ressource="//@processElements.9" quantity="1"/>
-  </processElements>
-  <processElements xsi:type="simplepdl:WorkSequence" predecessor="//@processElements.0" successor="//@processElements.1"/>
-  <processElements xsi:type="simplepdl:WorkSequence" linkType="finishToFinish" predecessor="//@processElements.0" successor="//@processElements.1"/>
-  <processElements xsi:type="simplepdl:WorkSequence" linkType="finishToStart" predecessor="//@processElements.0" successor="//@processElements.2"/>
-  <processElements xsi:type="simplepdl:WorkSequence" predecessor="//@processElements.0" successor="//@processElements.3"/>
-  <processElements xsi:type="simplepdl:Ressource" name="Concepteur" quantity="3"/>
-  <processElements xsi:type="simplepdl:Ressource" name="Développeur" quantity="4"/>
-  <processElements xsi:type="simplepdl:Guidance" text="Versionner le code" elements="//@processElements.2"/>
+  <processElements xsi:type="simplepdl:WorkSequence" linkType="finishToFinish"/>
+  <processElements xsi:type="simplepdl:WorkSequence" linkType="finishToStart"/>
+  <processElements xsi:type="simplepdl:WorkSequence"/>
 </simplepdl:Process>

@@ -1,0 +1,10 @@
+process demo {
+	resource pc 2 
+	
+	wd VenirAlHeure
+	wd Presenter need pc 1
+	
+	ws f2s from VenirAlHeure to Presenter
+	
+	note "Parler lentement" for Presenter
+}

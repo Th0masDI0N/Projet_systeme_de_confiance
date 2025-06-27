@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simplepdl:Process xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:simplepdl="http://simplepdl" name="demo">
+  <processElements xsi:type="simplepdl:WorkDefinition" name="arrive à l'heure" linksToSuccessors="//@processElements.2"/>
+  <processElements xsi:type="simplepdl:WorkDefinition" name="présenter" linksToPredecessors="//@processElements.2 //@processElements.7">
+    <resourceUsages ressource="//@processElements.4" quantity="2"/>
+  </processElements>
+  <processElements xsi:type="simplepdl:WorkSequence" linkType="finishToStart" predecessor="//@processElements.0" successor="//@processElements.1"/>
+  <processElements xsi:type="simplepdl:Guidance" text="parler lentement" elements="//@processElements.1"/>
+  <processElements xsi:type="simplepdl:Ressource" name="PC" quantity="1"/>
+  <processElements xsi:type="simplepdl:Guidance" text="Sourir" elements="//@processElements.1"/>
+  <processElements xsi:type="simplepdl:WorkDefinition" name="exemple" linksToSuccessors="//@processElements.7"/>
+  <processElements xsi:type="simplepdl:WorkSequence" linkType="finishToFinish" predecessor="//@processElements.6" successor="//@processElements.1"/>
+</simplepdl:Process>

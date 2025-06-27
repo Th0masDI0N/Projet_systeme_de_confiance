@@ -1,0 +1,23 @@
+
+digraph "demo" {
+  rankdir=LR;
+  concentrate=true;
+
+  // 1) tâches
+  node [shape=box];
+  "presenter";
+  "venir a l'école";
+
+  // 2) séquences de travail avec affichage du type et point-virgule
+  "venir a l'école" -> "presenter" 
+  // 3) ressources
+  node [shape=ellipse];
+  "pc" 
+  // 4) allocations de ressources
+
+  // 5) guidance
+  node [shape=note];
+  "Parler doucement";
+      "Parler doucement" -> "presenter" 
+}
+

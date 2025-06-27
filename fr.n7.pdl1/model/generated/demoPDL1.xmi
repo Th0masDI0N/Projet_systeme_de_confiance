@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pDL1:Process
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:pDL1="http://www.n7.fr/PDL1"
+    name="demo">
+  <processElements
+      xsi:type="pDL1:WorkDefinition"
+      name="VenirAlHeur"/>
+</pDL1:Process>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<petrinet:PetriNet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:petrinet="http://petrinet" name="demo">
+  <petriElements xsi:type="petrinet:Place" name="arrive à l'heure_ready" outgoing="//@petriElements.6" marking="1"/>
+  <petriElements xsi:type="petrinet:Place" name="arrive à l'heure_running" incoming="//@petriElements.7" outgoing="//@petriElements.9"/>
+  <petriElements xsi:type="petrinet:Place" name="arrive à l'heure_started" incoming="//@petriElements.8"/>
+  <petriElements xsi:type="petrinet:Place" name="arrive à l'heure_finished" incoming="//@petriElements.10" outgoing="//@petriElements.22"/>
+  <petriElements xsi:type="petrinet:Transition" name="arrive à l'heure_start" incoming="//@petriElements.6" outgoing="//@petriElements.7 //@petriElements.8"/>
+  <petriElements xsi:type="petrinet:Transition" name="arrive à l'heure_finish" incoming="//@petriElements.9" outgoing="//@petriElements.10"/>
+  <petriElements xsi:type="petrinet:Arc" weight="1" target="//@petriElements.4" source="//@petriElements.0"/>
+  <petriElements xsi:type="petrinet:Arc" weight="1" target="//@petriElements.1" source="//@petriElements.4"/>
+  <petriElements xsi:type="petrinet:Arc" weight="1" target="//@petriElements.2" source="//@petriElements.4"/>
+  <petriElements xsi:type="petrinet:Arc" weight="1" target="//@petriElements.5" source="//@petriElements.1"/>
+  <petriElements xsi:type="petrinet:Arc" weight="1" target="//@petriElements.3" source="//@petriElements.5"/>
+  <petriElements xsi:type="petrinet:Place" name="présenter_ready" outgoing="//@petriElements.17" marking="1"/>
+  <petriElements xsi:type="petrinet:Place" name="présenter_running" incoming="//@petriElements.18" outgoing="//@petriElements.20"/>
+  <petriElements xsi:type="petrinet:Place" name="présenter_started" incoming="//@petriElements.19"/>
+  <petriElements xsi:type="petrinet:Place" name="présenter_finished" incoming="//@petriElements.21"/>
+  <petriElements xsi:type="petrinet:Transition" name="présenter_start" incoming="//@petriElements.17 //@petriElements.22 //@petriElements.24" outgoing="//@petriElements.18 //@petriElements.19"/>
+  <petriElements xsi:type="petrinet:Transition" name="présenter_finish" incoming="//@petriElements.20" outgoing="//@petriElements.21 //@petriElements.25"/>
+  <petriElements xsi:type="petrinet:Arc" weight="1" target="//@petriElements.15" source="//@petriElements.11"/>
+  <petriElements xsi:type="petrinet:Arc" weight="1" target="//@petriElements.12" source="//@petriElements.15"/>
+  <petriElements xsi:type="petrinet:Arc" weight="1" target="//@petriElements.13" source="//@petriElements.15"/>
+  <petriElements xsi:type="petrinet:Arc" weight="1" target="//@petriElements.16" source="//@petriElements.12"/>
+  <petriElements xsi:type="petrinet:Arc" weight="1" target="//@petriElements.14" source="//@petriElements.16"/>
+  <petriElements xsi:type="petrinet:Arc" weight="1" isReadArc="true" target="//@petriElements.15" source="//@petriElements.3"/>
+  <petriElements xsi:type="petrinet:Place" name="PC_resource" incoming="//@petriElements.25" outgoing="//@petriElements.24" marking="1"/>
+  <petriElements xsi:type="petrinet:Arc" weight="2" target="//@petriElements.15" source="//@petriElements.23"/>
+  <petriElements xsi:type="petrinet:Arc" weight="2" target="//@petriElements.23" source="//@petriElements.16"/>
+</petrinet:PetriNet>
